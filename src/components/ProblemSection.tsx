@@ -1,4 +1,6 @@
-import { EyeOff, AlertOctagon, Database, ShieldAlert, Clock } from 'lucide-react';
+import React from 'react';
+import { EyeOff, AlertOctagon, Database, ArrowRight, FileCode2 } from 'lucide-react';
+import { HndlTimeline } from './HndlTimeline';
 
 interface ProblemSectionProps {
   onLearnMore: () => void;
@@ -6,147 +8,117 @@ interface ProblemSectionProps {
 
 export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) => {
   return (
-    <section id="problem" className="relative py-24 sm:py-32 bg-[#050814] border-t border-white/5">
+    <section id="problem" className="relative py-28 sm:py-36 bg-[#040814] border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Eyebrow and Headline */}
+        {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/40 border border-rose-500/30 text-rose-300 text-xs font-mono tracking-wider uppercase mb-4">
-            <AlertOctagon className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-950/40 border border-rose-500/30 text-rose-300 text-xs font-mono tracking-wider uppercase mb-5">
+            <AlertOctagon className="size-3.5" />
             The Cryptographic Blindspot
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Your Cryptography May Be Harder to See Than You Think.
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
-            Preparing for quantum threats is a <strong className="text-white">present-day planning challenge</strong>,
-            not science fiction. While a cryptographically relevant quantum computer (CRQC) does not exist today, the
-            operational reality of <span className="text-cyan-300 font-semibold">"Harvest Now, Decrypt Later" (HNDL)</span> and
-            the years required to modernize legacy codebases make immediate visibility essential.
+            Preparing for quantum threats is an <strong className="text-white">immediate present-day operational reality</strong>,
+            not hypothetical physics. The threat of <span className="text-cyan-300 font-semibold">&ldquo;Harvest Now, Decrypt Later&rdquo; (HNDL)</span> means
+            encrypted traffic intercepted today will be decrypted the moment a cryptographically relevant quantum computer (CRQC) comes online.
           </p>
         </div>
 
-        {/* Asymmetrical Bento Grid (Taste Skill directive: break visual monotony with unequal spans) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Card 1: Cryptographic Visibility (col-span-7) */}
+        {/* Asymmetrical Gapless Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 grid-flow-dense items-stretch mb-12">
+          {/* Card 1: Interactive HNDL Timeline (Col span 12 or 8) */}
+          <div className="md:col-span-12">
+            <HndlTimeline />
+          </div>
+
+          {/* Card 2: The Transitive Crypto Iceberg (Col span 7) */}
           <div className="md:col-span-7 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="size-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-105 transition-transform">
+                <div className="size-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-105 transition-transform duration-500">
                   <EyeOff className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-balance">
-                  Hidden Crypto in Code &amp; Deep Dependencies
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 text-balance">
+                  Over 70% of Cryptography Hides in Transitive Dependencies
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
-                  Over 70% of cryptographic calls don’t live in your primary service code—they hide inside third-party
-                  libraries, transitive package dependencies, deprecated SDKs, embedded firmware, and hardcoded TLS configurations.
-                  Standard static application security testing (SAST) tools flag generic bugs, but fail to identify cryptographic
-                  primitive parameters, key sizes, or elliptic curve choices.
+                  Cryptographic primitive calls rarely sit exposed in top-level handler functions. They hide deep inside
+                  transitive package dependencies, embedded firmware, compiled binary blobs, deprecated JWT signing engines,
+                  and legacy TLS ciphersuites that standard SAST/SCA scanners completely overlook.
                 </p>
               </div>
 
-              {/* Visual Artifact Mockup */}
-              <div className="p-4 rounded-xl bg-black/40 border border-white/10 font-mono text-xs text-slate-300">
-                <div className="flex flex-wrap items-center justify-between text-slate-400 pb-2 border-b border-white/5 mb-2 gap-1.5">
-                  <span className="truncate">transitive_lockfile_trace.json</span>
-                  <span className="text-rose-400 font-semibold shrink-0">Hidden Vulnerability</span>
+              {/* Real AST Code Trace Visual Mockup */}
+              <div className="p-4 rounded-xl bg-black/50 border border-white/10 font-mono text-xs text-slate-300">
+                <div className="flex flex-wrap items-center justify-between text-slate-400 pb-2 border-b border-white/10 mb-2 gap-2">
+                  <span className="text-cyan-300 flex items-center gap-1.5">
+                    <FileCode2 className="size-3.5" />
+                    AST Dependency Call Hierarchy
+                  </span>
+                  <span className="text-rose-400 font-bold text-[11px] px-2 py-0.5 rounded bg-rose-950/60 border border-rose-500/30">
+                    Transitive Vulnerability
+                  </span>
                 </div>
-                <div className="text-slate-400 break-words">
-                  <span className="text-purple-400">auth-service</span> &rarr; jwt-engine v2.1 &rarr;{' '}
-                  <span className="text-rose-400 font-bold">crypto/rsa-2048</span> (Deprecated)
+                <div className="space-y-1.5 text-[11px]">
+                  <div className="text-slate-400">
+                    <span className="text-white font-semibold">service/auth-gateway</span> &rarr;
+                    <span className="text-purple-300"> pkg/jwt-v2.4.0</span> &rarr;
+                    <span className="text-rose-400 font-bold"> crypto/rsa-2048 (PKCS#1 v1.5)</span>
+                  </div>
+                  <div className="text-slate-500 pl-4 border-l border-white/10 text-[10px]">
+                    &rarr; Parameter: e=65537, keySize=2048 &bull; Shor Vulnerability: Critical
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Card 2: Centralized CBOM Absence (col-span-5) */}
+          {/* Card 3: The CBOM Void (Col span 5) */}
           <div className="md:col-span-5 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="size-12 rounded-2xl bg-blue-950/60 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 transition-transform">
+                <div className="size-12 rounded-2xl bg-blue-950/60 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 transition-transform duration-500">
                   <Database className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-balance">
-                  Absence of a Centralized Cryptographic Inventory
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 text-balance">
+                  The Cryptographic Bill of Materials (CBOM) Void
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
-                  Most organizations have Software Bills of Materials (SBOM), but zero centralized visibility into their
-                  <strong className="text-white"> Cryptographic Bill of Materials (CBOM)</strong>. Without an automated inventory,
-                  security leaders cannot answer simple compliance or audit questions: which algorithms are running, where keys are
-                  stored, and what algorithms are quantum-vulnerable.
+                  While security teams maintain Software Bills of Materials (SBOM), virtually no enterprise possesses an
+                  automated, machine-readable <strong className="text-white">Cryptographic Bill of Materials (CBOM)</strong>.
+                  Without an automated CBOM, audits take months and compliance questionnaires are answered with guesswork.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono tabular-nums">
-                <span className="text-slate-400">CBOM Coverage:</span>
-                <span className="text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
-                  0% Automated Today
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3: Prioritization Paralysis (col-span-5) */}
-          <div className="md:col-span-5 double-bezel group">
-            <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-              <div>
-                <div className="size-12 rounded-2xl bg-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-105 transition-transform">
-                  <ShieldAlert className="size-6 stroke-[1.5]" />
+              <div className="p-4 rounded-xl bg-black/50 border border-white/10 space-y-2">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-slate-400">Manual CBOM Accuracy:</span>
+                  <span className="text-rose-400 font-bold">&lt; 15% Coverage</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-balance">
-                  Finding Paralysis vs. Actionable Risk
-                </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
-                  A blind grep reveals thousands of cryptographic references across enterprise repositories. Engineering
-                  teams cannot and should not attempt to rewrite everything simultaneously. Security architects need
-                  risk-weighted scoring that considers algorithm weakness, data exposure, and external network reachability.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs px-2.5 py-1 rounded-md bg-rose-950/50 text-rose-300 border border-rose-500/30 font-mono">
-                  Shor's Vulnerable: High
-                </span>
-                <span className="text-xs px-2.5 py-1 rounded-md bg-emerald-950/50 text-emerald-300 border border-emerald-500/30 font-mono">
-                  Symmetric: Safe
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4: Long-Term Data Security & Migration Complexity (col-span-7) */}
-          <div className="md:col-span-7 double-bezel group">
-            <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
-              <div>
-                <div className="size-12 rounded-2xl bg-purple-950/60 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-105 transition-transform">
-                  <Clock className="size-6 stroke-[1.5]" />
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <span className="text-slate-400">Qcrypt AST Automated CBOM:</span>
+                  <span className="text-emerald-400 font-bold">100% Deterministic</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-balance">
-                  Long-Lived Data &amp; Multi-Year Migration Complexity
-                </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-4 text-pretty">
-                  Financial transactions, confidential medical data, trade secrets, and government communications must
-                  remain secure for <strong className="text-white">10 to 30 years</strong>. Adversaries can capture encrypted
-                  traffic today and store it until decryption becomes viable.
-                </p>
-                <p className="text-sm text-slate-400 leading-relaxed text-pretty">
-                  Migrating an enterprise infrastructure from RSA and elliptic curves to post-quantum algorithms like ML-KEM
-                  and ML-DSA will take an estimated 3 to 7 years across protocols, hardware, and client applications. Early
-                  planning is the only defence against costly emergency refactors.
-                </p>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs font-mono text-cyan-400 text-pretty">Mosca's Theorem: If D + M &gt; Q, you are already vulnerable</span>
-                <button
-                  onClick={onLearnMore}
-                  className="text-xs text-slate-300 hover:text-white font-medium flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-lg px-2 py-1"
-                >
-                  Explore Solution &rarr;
-                </button>
+                <div className="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden flex mt-1">
+                  <div className="h-full bg-rose-500" style={{ width: '15%' }} />
+                  <div className="h-full bg-emerald-500" style={{ width: '85%' }} />
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Section Navigation CTA */}
+        <div className="text-center pt-4">
+          <button
+            onClick={onLearnMore}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-cyan-300 font-mono text-xs border border-white/10 hover:border-cyan-400/40 transition-all cursor-pointer"
+          >
+            <span>See how the Qcrypt Engine solves the Cryptographic Blindspot</span>
+            <ArrowRight className="size-3.5" />
+          </button>
         </div>
       </div>
     </section>

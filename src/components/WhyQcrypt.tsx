@@ -1,17 +1,24 @@
+import React from 'react';
 import {
   CheckCircle2,
   Shield,
   Layers,
   FileCheck,
-  Target
+  Target,
+  Sparkles
 } from 'lucide-react';
+import { AgilityCalculator } from './AgilityCalculator';
 
-export const WhyQcrypt: React.FC = () => {
+interface WhyQcryptProps {
+  onExploreRemediation?: () => void;
+}
+
+export const WhyQcrypt: React.FC<WhyQcryptProps> = ({ onExploreRemediation = () => {} }) => {
   const differentiators = [
     {
       title: 'Actionable Prioritization, Not Just an Endless List',
       description:
-        'Generic security scanners flood engineering backlogs with thousands of cryptographic alerts. Qcrypt contextualizes each finding by public exposure, data lifespan, and algorithmic severity so teams fix what matters.',
+        'Generic security scanners flood engineering backlogs with thousands of cryptographic alerts. Qcrypt contextualizes each finding by public exposure, data lifespan, and algorithmic severity so teams fix what actually matters.',
       icon: Target
     },
     {
@@ -62,102 +69,89 @@ export const WhyQcrypt: React.FC = () => {
   ];
 
   return (
-    <section id="why-qcrypt" className="relative py-24 sm:py-32 bg-[#050814] border-t border-white/5">
+    <section id="why-qcrypt" className="relative py-28 sm:py-36 bg-[#040814] border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-            Structured Migration
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
+            <Sparkles className="size-3.5" />
+            Competitive Differentiator
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
-            Make Post-Quantum Migration More Manageable.
+            Make Post-Quantum Migration Manageable.
           </h2>
-          <p className="text-lg text-slate-300 leading-relaxed font-normal text-pretty">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             Post-quantum cryptography migration will be one of the largest infrastructural transitions in computing
             history. Qcrypt makes this monumental challenge approachable and structured.
           </p>
-
-          {/* Prominent Core Value Proposition Box */}
-          <div className="mt-8 p-5 rounded-2xl bg-cyan-950/30 border border-cyan-400/30 shadow-[0_0_25px_rgba(0,240,255,0.1)]">
-            <div className="text-xs font-mono uppercase text-cyan-300 tracking-wider font-semibold mb-2">
-              Our Core Differentiation
-            </div>
-            <p className="text-base sm:text-lg text-white font-semibold leading-relaxed text-pretty">
-              &ldquo;Qcrypt connects cryptographic discovery, risk prioritization, and migration planning in one
-              structured workflow.&rdquo;
-            </p>
-          </div>
         </div>
 
-        {/* 4 Key Pillars Grid */}
+        {/* 1. Interactive Agility Calculator Widget */}
+        <div className="mb-16">
+          <AgilityCalculator onExploreRemediation={onExploreRemediation} />
+        </div>
+
+        {/* 2. 4 Core Differentiators Bento */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {differentiators.map((diff) => {
+          {differentiators.map((diff, idx) => {
             const Icon = diff.icon;
             return (
-              <div key={diff.title} className="cyber-card rounded-2xl p-6 sm:p-7 flex gap-4">
-                <div className="size-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 shrink-0">
-                  <Icon className="size-6 stroke-[1.5]" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 text-balance">
-                    {diff.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-pretty">
-                    {diff.description}
-                  </p>
+              <div key={idx} className="double-bezel group">
+                <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="size-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-500">
+                      <Icon className="size-6 stroke-[1.5]" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 text-balance">
+                      {diff.title}
+                    </h3>
+                    <p className="text-sm text-slate-300 leading-relaxed text-pretty">
+                      {diff.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Honest Comparison Matrix */}
-        <div className="double-bezel">
-          <div className="double-bezel-inner p-6 sm:p-8">
-            <h3 className="text-xl font-bold text-white mb-2">
-              How Qcrypt Compares
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mb-6 font-mono">
-              Designed specifically for post-quantum cryptographic intelligence, not generic vulnerability noise.
-            </p>
-
-            <div className="overflow-x-auto relative rounded-xl">
-              <div className="sm:hidden text-[10px] font-mono text-cyan-400/90 px-3 py-1.5 bg-cyan-950/40 border border-white/5 rounded-t-xl flex items-center justify-between">
-                <span>&larr; Swipe to compare capabilities &rarr;</span>
-                <span className="text-slate-400">4 columns</span>
-              </div>
-              <table className="w-full text-left text-xs sm:text-sm min-w-[580px]">
-                <thead>
-                  <tr className="border-b border-white/10 text-slate-400 font-mono text-[11px] uppercase tracking-wider">
-                    <th className="py-3 px-3">Cryptographic Dimension</th>
-                    <th className="py-3 px-3 text-slate-400">Generic SCA Tools</th>
-                    <th className="py-3 px-3 text-slate-400">Manual Audits</th>
-                    <th className="py-3 px-3 text-cyan-300 bg-cyan-950/40 rounded-t-lg">Qcrypt Platform</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5 text-slate-300">
-                  {comparisonRows.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                      <td className="py-3.5 px-3 font-semibold text-white">
-                        {row.capability}
-                      </td>
-                      <td className="py-3.5 px-3 text-slate-400 text-xs">
-                        {row.genericSca}
-                      </td>
-                      <td className="py-3.5 px-3 text-slate-400 text-xs">
-                        {row.manualAudit}
-                      </td>
-                      <td className="py-3.5 px-3 text-cyan-200 text-xs font-semibold bg-cyan-950/20">
-                        <span className="flex items-center gap-1.5">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                          {row.qcrypt}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        {/* 3. Comprehensive Comparison Table (Doppelrand Enclosure) */}
+        <div className="double-bezel group">
+          <div className="double-bezel-inner p-6 sm:p-8 overflow-x-auto">
+            <div className="text-base font-bold text-white mb-1">
+              Methodology Comparison
             </div>
+            <div className="text-xs text-slate-400 mb-6 font-mono">
+              Comparing Qcrypt AST intelligence against traditional approaches
+            </div>
+
+            <table className="w-full text-left text-xs border-collapse min-w-[600px]">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400 font-mono">
+                  <th className="py-3 px-3 font-semibold">Capability</th>
+                  <th className="py-3 px-3 font-semibold">Generic SAST / SCA</th>
+                  <th className="py-3 px-3 font-semibold">Manual Advisory Audit</th>
+                  <th className="py-3 px-3 font-bold text-cyan-400 bg-cyan-950/30 rounded-t-lg">
+                    Qcrypt Migration Intelligence
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5 font-sans">
+                {comparisonRows.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="py-3.5 px-3 font-medium text-white">{row.capability}</td>
+                    <td className="py-3.5 px-3 text-slate-400">{row.genericSca}</td>
+                    <td className="py-3.5 px-3 text-slate-400">{row.manualAudit}</td>
+                    <td className="py-3.5 px-3 text-cyan-300 font-semibold bg-cyan-950/20">
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" />
+                        <span>{row.qcrypt}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

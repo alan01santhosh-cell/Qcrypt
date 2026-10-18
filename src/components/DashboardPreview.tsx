@@ -1,17 +1,15 @@
-import { useState, useMemo, Fragment } from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import { MOCK_CBOM_ITEMS } from '../data/mockData';
 import {
   Search,
-  Filter,
   Download,
-  FileText,
-  CheckCircle2,
-  AlertTriangle,
   ChevronDown,
   ChevronUp,
   Cpu,
-  Info,
-  X
+  X,
+  Sliders,
+  Copy,
+  Check
 } from 'lucide-react';
 
 export const DashboardPreview: React.FC = () => {
@@ -19,8 +17,9 @@ export const DashboardPreview: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedRisk, setSelectedRisk] = useState<string>('All');
   const [expandedId, setExpandedId] = useState<string | null>('CRY-101');
-  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [exportNotice, setExportNotice] = useState<string | null>(null);
+  const [migrationSimPercent, setMigrationSimPercent] = useState<number>(28);
+  const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
 
   // Filtered Items
   const filteredItems = useMemo(() => {
@@ -80,264 +79,250 @@ export const DashboardPreview: React.FC = () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    setExportNotice('Downloaded CycloneDX 1.6 CBOM demo file successfully.');
+    setExportNotice('Downloaded CycloneDX 1.6 CBOM JSON artifact successfully.');
     setTimeout(() => setExportNotice(null), 4000);
   };
 
+  const handleCopySnippet = (item: any) => {
+    const snippet = `// CBOM Entry for ${item.id} (${item.assetName})
+// Location: ${item.location}
+{
+  "algorithm": "${item.algorithm}",
+  "keyLength": ${item.keySize},
+  "quantumVulnerable": ${item.quantumVulnerable},
+  "remediation": "${item.nistReplacement}"
+}`;
+    navigator.clipboard.writeText(snippet);
+    setCopiedSnippetId(item.id);
+    setTimeout(() => setCopiedSnippetId(null), 2000);
+  };
+
   return (
-    <section id="dashboard-preview" className="relative py-24 sm:py-32 bg-[#030712] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="dashboard-preview" className="relative py-28 sm:py-36 bg-[#030712] border-t border-white/[0.08]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-              <Cpu className="size-3.5" />
-              Interactive Product Console
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
+            <Cpu className="size-3.5" />
+            Interactive Product Sandbox
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
+            Explore the Cryptographic Bill of Materials (CBOM).
+          </h2>
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
+            Interact with simulated cryptographic findings extracted across enterprise repositories. Filter by risk tier,
+            inspect source call sites, simulate migration agility progress, or export in standardized{' '}
+            <strong className="text-white">CycloneDX 1.6 CBOM</strong> format.
+          </p>
+        </div>
+
+        {/* Live Interactive Migration Simulator Strip */}
+        <div className="p-5 rounded-2xl bg-[#060a16] border border-cyan-500/20 mb-8 shadow-xl">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+            <div className="flex items-center gap-2 text-xs font-mono">
+              <Sliders className="size-4 text-cyan-400" />
+              <span className="text-white font-bold">Migration Velocity Simulator:</span>
+              <span className="text-cyan-300 font-bold">{migrationSimPercent}% Transitioned</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
-              Product Dashboard Preview
-            </h2>
-            <p className="text-base text-slate-300 leading-relaxed text-pretty">
-              Explore how security and engineering teams investigate cryptographic findings, track dependency risk,
-              and manage NIST-aligned migration roadmaps.
-            </p>
+            <div className="text-xs font-mono text-slate-400">
+              Simulated Residual Shor's Exposure:{' '}
+              <span className="text-rose-400 font-bold">{100 - migrationSimPercent}%</span>
+            </div>
           </div>
 
-          {/* Sample Data & Disclaimer Notice */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <div className="px-4 py-2 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs font-mono flex items-center gap-2">
-              <Info className="size-4 shrink-0 text-amber-400" />
-              <span>Simulated Demo Data &bull; Real scanning engine in private pilot</span>
-            </div>
+          <div className="flex items-center gap-4">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={migrationSimPercent}
+              onChange={(e) => setMigrationSimPercent(Number(e.target.value))}
+              className="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-800 rounded-lg"
+              aria-label="Simulate migration velocity"
+            />
             <button
-              onClick={handleDownloadCbom}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+              onClick={() => setMigrationSimPercent(100)}
+              className="px-3 py-1 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 border border-cyan-500/30 text-cyan-300 text-xs font-mono whitespace-nowrap cursor-pointer transition-colors"
             >
-              <Download className="size-4" />
-              Export CBOM (.json)
+              Simulate 100% PQC
             </button>
           </div>
         </div>
 
-        {exportNotice && (
-          <div className="mb-6 p-3 rounded-xl bg-cyan-950/70 border border-cyan-400/50 text-cyan-200 text-xs font-mono flex items-center justify-between">
-            <span>&check; {exportNotice}</span>
-            <button onClick={() => setExportNotice(null)} aria-label="Dismiss notice" className="text-cyan-400 hover:text-white">
-              <X className="size-4" />
-            </button>
-          </div>
-        )}
-
-        {/* Dashboard Shell with Double-Bezel Framing */}
-        <div className="double-bezel">
+        {/* Interactive CBOM Explorer Container (Doppelrand Double-Bezel) */}
+        <div className="double-bezel group">
           <div className="double-bezel-inner p-4 sm:p-6 lg:p-8">
-            {/* Top Metrics Row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="p-4 rounded-xl bg-[#030611] border border-white/10">
-                <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
-                  Discovered Crypto Assets
-                </div>
-                <div className="text-2xl sm:text-3xl font-black text-white tabular-nums">1,482</div>
-                <div className="text-[11px] text-slate-400 mt-1 font-mono">Across 42 microservices</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30">
-                <div className="text-xs font-mono text-rose-300 uppercase tracking-wider mb-1">
-                  Quantum-Vulnerable
-                </div>
-                <div className="text-2xl sm:text-3xl font-black text-rose-400 tabular-nums">418</div>
-                <div className="text-[11px] text-rose-300/80 mt-1 font-mono">RSA &amp; ECC Asymmetric ciphers</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30">
-                <div className="text-xs font-mono text-amber-300 uppercase tracking-wider mb-1">
-                  High Priority HNDL
-                </div>
-                <div className="text-2xl sm:text-3xl font-black text-amber-400 tabular-nums">19</div>
-                <div className="text-[11px] text-amber-300/80 mt-1 font-mono">Public TLS &amp; Long-life Vaults</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
-                <div className="text-xs font-mono text-emerald-300 uppercase tracking-wider mb-1">
-                  Quantum-Resistant
-                </div>
-                <div className="text-2xl sm:text-3xl font-black text-emerald-400 tabular-nums">1,064</div>
-                <div className="text-[11px] text-emerald-300/80 mt-1 font-mono">AES-256 &amp; SHA-2/3 primitives</div>
-              </div>
-            </div>
-
-            {/* Controls Bar: Search, Category Filter, Risk Filter */}
-            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-4 rounded-2xl bg-[#040814] border border-white/10 mb-6">
+            {/* Control Bar: Search & Filters */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 pb-6 mb-6 border-b border-white/10">
               {/* Search input */}
-              <div className="relative flex-1">
-                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <div className="relative flex-1 max-w-md">
+                <Search className="size-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="Filter by asset name, algorithm (e.g. RSA, secp256r1, AES), or file path..."
+                  placeholder="Search algorithm, service, path, or ID..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-black/50 border border-white/10 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400/70"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white placeholder-slate-500 text-xs font-mono focus:outline-none focus:border-cyan-400 transition-colors"
                 />
               </div>
 
-              {/* Category & Risk Filter Pills */}
-              <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+              {/* Category & Risk Filter Chips */}
+              <div className="flex flex-wrap items-center gap-2">
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full sm:w-auto px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-400"
+                  className="px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-slate-300 text-xs font-mono focus:outline-none focus:border-cyan-400 cursor-pointer"
+                  aria-label="Filter by category"
                 >
                   <option value="All">All Categories</option>
                   <option value="Key Exchange">Key Exchange</option>
                   <option value="Digital Signature">Digital Signature</option>
                   <option value="Symmetric Encryption">Symmetric Encryption</option>
-                  <option value="TLS Configuration">TLS Configuration</option>
-                  <option value="Hashing">Hashing</option>
+                  <option value="Cryptographic Hash">Cryptographic Hash</option>
                 </select>
 
-                <div className="flex flex-wrap items-center gap-2 mt-1 sm:mt-0">
-                  <span className="text-xs font-mono text-slate-400 ml-1 mr-1 flex items-center gap-1">
-                    <Filter className="size-3.5" />
-                    Risk:
-                  </span>
-                  {['All', 'Vulnerable', 'Critical', 'Quantum-Ready'].map((risk) => (
-                    <button
-                      key={risk}
-                      onClick={() => setSelectedRisk(risk)}
-                      className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
-                        selectedRisk === risk
-                          ? 'bg-cyan-500 text-slate-950 font-bold'
-                          : 'bg-white/5 hover:bg-white/10 text-slate-300'
-                      }`}
-                    >
-                      {risk}
-                    </button>
-                  ))}
-                </div>
+                <select
+                  value={selectedRisk}
+                  onChange={(e) => setSelectedRisk(e.target.value)}
+                  className="px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-slate-300 text-xs font-mono focus:outline-none focus:border-cyan-400 cursor-pointer"
+                  aria-label="Filter by risk tier"
+                >
+                  <option value="All">All Risk Tiers</option>
+                  <option value="Critical">Critical</option>
+                  <option value="High">High</option>
+                  <option value="Low">Low</option>
+                  <option value="Vulnerable">Quantum Vulnerable</option>
+                  <option value="Quantum-Ready">Quantum-Ready</option>
+                </select>
+
+                {/* Export Button */}
+                <button
+                  onClick={handleDownloadCbom}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-sky-400 text-slate-950 font-bold text-xs font-mono shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all cursor-pointer"
+                >
+                  <Download className="size-3.5" />
+                  <span>Export CycloneDX 1.6</span>
+                </button>
               </div>
             </div>
 
-            {/* CBOM Inventory Table with Mobile Swipe Protection */}
-            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#030611] relative">
-              <div className="md:hidden text-[10px] font-mono text-cyan-400/90 px-4 py-2 bg-cyan-950/40 border-b border-white/5 flex items-center justify-between">
-                <span>&larr; Swipe horizontally to view full CBOM fields &rarr;</span>
-                <span className="text-slate-400">6 columns</span>
+            {/* Notification Alert if downloaded */}
+            {exportNotice && (
+              <div className="mb-4 p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-mono flex items-center justify-between animate-in fade-in">
+                <span>{exportNotice}</span>
+                <button onClick={() => setExportNotice(null)} className="cursor-pointer">
+                  <X className="size-3.5" />
+                </button>
               </div>
-              <table className="w-full text-left text-xs font-mono min-w-[700px]">
+            )}
+
+            {/* Table of Cryptographic Assets */}
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border-collapse min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.02] text-slate-400 text-[11px] uppercase tracking-wider">
-                    <th className="py-3.5 px-4 font-semibold">Asset ID &amp; Target</th>
-                    <th className="py-3.5 px-4 font-semibold">Category</th>
-                    <th className="py-3.5 px-4 font-semibold">Algorithm &amp; Key Size</th>
-                    <th className="py-3.5 px-4 font-semibold">Quantum Risk</th>
-                    <th className="py-3.5 px-4 font-semibold">NIST Replacement Target</th>
-                    <th className="py-3.5 px-4 font-semibold text-right">Details</th>
+                  <tr className="border-b border-white/10 text-slate-400 font-mono">
+                    <th className="py-3 px-3">Asset ID</th>
+                    <th className="py-3 px-3">Cryptographic Primitive</th>
+                    <th className="py-3 px-3">Key Size</th>
+                    <th className="py-3 px-3">Category</th>
+                    <th className="py-3 px-3">Quantum Status</th>
+                    <th className="py-3 px-3">Risk Tier</th>
+                    <th className="py-3 px-3 text-right">Details</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-slate-300">
+                <tbody className="divide-y divide-white/5 font-sans">
                   {filteredItems.map((item) => {
                     const isExpanded = expandedId === item.id;
                     return (
                       <Fragment key={item.id}>
                         <tr
                           onClick={() => setExpandedId(isExpanded ? null : item.id)}
-                          className={`hover:bg-cyan-950/20 cursor-pointer transition-colors ${
-                            isExpanded ? 'bg-cyan-950/30' : ''
-                          }`}
+                          className="hover:bg-white/[0.03] transition-colors cursor-pointer"
                         >
-                          <td className="py-3.5 px-4">
-                            <div className="font-bold text-white flex items-center gap-2">
-                              <span className="text-cyan-400">{item.id}</span>
-                              <span className="font-sans text-xs text-slate-200">{item.assetName}</span>
-                            </div>
-                            <div className="text-[10px] text-slate-400 truncate max-w-xs mt-0.5">
-                              {item.location}
-                            </div>
+                          <td className="py-3 px-3 font-mono text-cyan-400 font-bold">{item.id}</td>
+                          <td className="py-3 px-3">
+                            <div className="font-semibold text-white">{item.assetName}</div>
+                            <div className="text-[11px] text-slate-400 font-mono">{item.algorithm}</div>
                           </td>
-
-                          <td className="py-3.5 px-4 text-slate-300">
-                            {item.category}
-                          </td>
-
-                          <td className="py-3.5 px-4">
-                            <span className="text-white font-semibold">{item.algorithm}</span>
-                            <span className="text-slate-400 ml-1.5 text-[11px]">({item.keySize})</span>
-                          </td>
-
-                          <td className="py-3.5 px-4">
+                          <td className="py-3 px-3 font-mono text-slate-300">{item.keySize}</td>
+                          <td className="py-3 px-3 text-slate-300">{item.category}</td>
+                          <td className="py-3 px-3">
                             <span
-                              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider ${
-                                item.riskScore === 'Critical'
-                                  ? 'bg-rose-950/80 text-rose-300 border border-rose-500/40'
-                                  : item.riskScore === 'High'
-                                  ? 'bg-amber-950/80 text-amber-300 border border-amber-500/40'
-                                  : item.riskScore === 'Medium'
-                                  ? 'bg-yellow-950/70 text-yellow-300 border border-yellow-500/30'
-                                  : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
+                              className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider ${
+                                item.quantumVulnerable
+                                  ? 'bg-rose-950/70 text-rose-300 border border-rose-500/30'
+                                  : 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/30'
                               }`}
                             >
-                              {item.quantumVulnerable ? (
-                                <AlertTriangle className="w-3 h-3 text-rose-400" />
-                              ) : (
-                                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                              )}
+                              {item.quantumVulnerable ? 'Shor Vulnerable' : 'Resistant'}
+                            </span>
+                          </td>
+                          <td className="py-3 px-3">
+                            <span
+                              className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                                item.riskScore === 'Critical'
+                                  ? 'text-rose-400'
+                                  : item.riskScore === 'High'
+                                  ? 'text-amber-400'
+                                  : 'text-emerald-400'
+                              }`}
+                            >
                               {item.riskScore}
                             </span>
                           </td>
-
-                          <td className="py-3.5 px-4 text-slate-300">
-                            <span className="text-cyan-300 font-semibold">{item.nistReplacement}</span>
-                          </td>
-
-                          <td className="py-3.5 px-4 text-right">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setExpandedId(isExpanded ? null : item.id);
-                              }}
-                              className="p-1 rounded hover:bg-white/10 text-slate-400 hover:text-white"
-                              aria-label="Toggle details"
-                            >
-                              {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                            </button>
+                          <td className="py-3 px-3 text-right">
+                            {isExpanded ? (
+                              <ChevronUp className="size-4 text-cyan-400 inline" />
+                            ) : (
+                              <ChevronDown className="size-4 text-slate-500 inline" />
+                            )}
                           </td>
                         </tr>
 
-                        {/* Expandable Remediation Drawer */}
+                        {/* Expandable Row Details */}
                         {isExpanded && (
-                          <tr className="bg-[#02050e] border-b border-cyan-500/20">
-                            <td colSpan={6} className="p-4 sm:p-6">
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-sans">
-                                <div className="p-4 rounded-xl bg-black/40 border border-white/10">
-                                  <div className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider mb-1">
-                                    Dependency Origin &amp; Call Site
-                                  </div>
-                                  <div className="text-white font-medium mb-1">{item.dependency}</div>
-                                  <div className="font-mono text-slate-400 text-[11px] break-all">
+                          <tr className="bg-black/40">
+                            <td colSpan={7} className="p-4 sm:p-5">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+                                <div>
+                                  <div className="text-slate-400 mb-1">AST Code Location:</div>
+                                  <div className="p-2 rounded bg-black/60 border border-white/10 text-cyan-300 font-mono break-all mb-3">
                                     {item.location}
                                   </div>
-                                </div>
 
-                                <div className="p-4 rounded-xl bg-black/40 border border-white/10">
-                                  <div className="font-mono text-[11px] text-amber-400 uppercase tracking-wider mb-1">
-                                    Quantum Threat Analysis
-                                  </div>
-                                  <div className="text-slate-300 text-xs leading-relaxed">
-                                    {item.quantumVulnerable
-                                      ? `Vulnerable to Shor's algorithm polynomial time discrete logarithm / integer factorization. Poses immediate risk for long-term encrypted records.`
-                                      : `Symmetric cipher / hash primitive provides adequate quantum security margin against Grover's speedup algorithm.`}
-                                  </div>
-                                </div>
-
-                                <div className="p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/30">
-                                  <div className="font-mono text-[11px] text-cyan-300 uppercase tracking-wider mb-1 font-semibold">
-                                    Recommended Remediation Action
-                                  </div>
-                                  <div className="text-slate-200 text-xs leading-relaxed font-medium mb-2">
+                                  <div className="text-slate-400 mb-1">Observed Vulnerability:</div>
+                                  <div className="p-2 rounded bg-rose-950/20 border border-rose-500/20 text-rose-300">
                                     {item.recommendedAction}
                                   </div>
-                                  <div className="font-mono text-[10px] text-cyan-400 flex items-center gap-1">
-                                    <span>Target: {item.nistReplacement}</span>
+                                </div>
+
+                                <div>
+                                  <div className="text-slate-400 mb-1">Recommended NIST FIPS Replacement:</div>
+                                  <div className="p-2 rounded bg-emerald-950/30 border border-emerald-500/30 text-emerald-300 font-bold mb-3">
+                                    {item.nistReplacement}
+                                  </div>
+
+                                  <div className="flex items-center justify-between pt-1">
+                                    <span className="text-[11px] text-slate-400">CycloneDX Spec v1.6</span>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleCopySnippet(item);
+                                      }}
+                                      className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                                    >
+                                      {copiedSnippetId === item.id ? (
+                                        <>
+                                          <Check className="size-3 text-emerald-400" />
+                                          <span className="text-emerald-400">Snippet Copied</span>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Copy className="size-3 text-slate-400" />
+                                          <span>Copy CBOM Snippet</span>
+                                        </>
+                                      )}
+                                    </button>
                                   </div>
                                 </div>
                               </div>
@@ -349,121 +334,9 @@ export const DashboardPreview: React.FC = () => {
                   })}
                 </tbody>
               </table>
-
-              {filteredItems.length === 0 && (
-                <div className="text-center py-12 px-4 text-slate-400 flex flex-col items-center justify-center gap-3">
-                  <p className="text-sm">No cryptographic assets matched your search filters.</p>
-                  <button
-                    onClick={() => {
-                      setSearchQuery('');
-                      setSelectedCategory('All');
-                      setSelectedRisk('All');
-                    }}
-                    className="px-4 py-2 rounded-xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold hover:bg-cyan-900/40 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
-                  >
-                    Reset All Filters
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Dashboard Footer Action Bar */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-                <span>Showing {filteredItems.length} of {MOCK_CBOM_ITEMS.length} demo assets</span>
-                <span>&bull;</span>
-                <span className="text-cyan-400">CycloneDX 1.6 Compliant</span>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <button
-                  onClick={() => setIsExportModalOpen(true)}
-                  className="w-full sm:w-auto justify-center px-4 py-2.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold flex items-center gap-2 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
-                >
-                  <FileText className="size-3.5 text-cyan-400" />
-                  View Audit Report Summary
-                </button>
-                <button
-                  onClick={handleDownloadCbom}
-                  className="w-full sm:w-auto justify-center px-4 py-2.5 sm:py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
-                >
-                  <Download className="size-3.5" />
-                  Download CycloneDX CBOM (.json)
-                </button>
-              </div>
             </div>
           </div>
         </div>
-
-        {/* Audit Report Summary Modal */}
-        {isExportModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
-            <div className="relative max-w-2xl w-full my-auto max-h-[90vh] overflow-y-auto rounded-3xl bg-[#060b17] border border-white/20 p-5 sm:p-8 shadow-2xl text-left">
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <div>
-                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-cyan-400" />
-                    Audit-Ready PQC Executive Summary
-                  </h3>
-                  <p className="text-xs font-mono text-slate-400 mt-0.5">
-                    Document ID: QC-2026-DEMO-AUDIT &bull; Generated from CBOM v1.6
-                  </p>
-                </div>
-                <button
-                  onClick={() => setIsExportModalOpen(false)}
-                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="space-y-4 text-xs text-slate-300 font-sans leading-relaxed">
-                <div className="p-3.5 rounded-xl bg-cyan-950/30 border border-cyan-500/30">
-                  <span className="font-semibold text-white">Posture Overview:</span> Evaluated 1,482 cryptographic
-                  assets across sample repository artifacts. Identified 418 asymmetric primitives vulnerable to Shor’s
-                  algorithm, including 19 critical external TLS and auth endpoints requiring priority migration.
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 rounded-lg bg-black/40 border border-white/10">
-                    <div className="font-mono text-slate-400 uppercase text-[10px]">Asymmetric Exposure</div>
-                    <div className="text-base font-bold text-rose-400 mt-0.5">RSA-2048 &amp; ECDSA (256-bit)</div>
-                    <div className="text-[11px] text-slate-400 mt-1">High HNDL risk on session exchange</div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-black/40 border border-white/10">
-                    <div className="font-mono text-slate-400 uppercase text-[10px]">Target Standard</div>
-                    <div className="text-base font-bold text-cyan-400 mt-0.5">NIST FIPS 203 / 204</div>
-                    <div className="text-[11px] text-slate-400 mt-1">Staged Hybrid Rollout recommended</div>
-                  </div>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 font-mono text-[11px] text-slate-400">
-                  <strong>Disclaimer:</strong> This executive summary is generated from illustrative demo data for
-                  product evaluation purposes. Production deployment requires connecting the Qcrypt AST analyzer to your
-                  enterprise repositories.
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-white/10 flex justify-end gap-3">
-                <button
-                  onClick={() => setIsExportModalOpen(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={() => {
-                    handleDownloadCbom();
-                    setIsExportModalOpen(false);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-cyan-400 text-slate-950 font-bold text-xs"
-                >
-                  Download CBOM JSON
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ShieldCheck,
   Code2,
@@ -5,7 +6,8 @@ import {
   Cloud,
   FileLock2,
   Compass,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 interface TargetCustomersProps {
@@ -19,7 +21,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
       role: 'Chief Information Security Officers & Cryptographic Architects',
       icon: ShieldCheck,
       useCase:
-        'Continuous cryptographic governance across sprawling multi-cloud organizations, providing executive boards with quantifiable risk metrics and defensible PQC readiness roadmaps.',
+        'Continuous cryptographic governance across multi-cloud organizations, providing executive boards with quantifiable risk metrics and defensible PQC readiness roadmaps.',
       benefit:
         'Replaces anecdotal security reviews with verifiable CBOM inventories and avoids sudden regulatory compliance penalties.'
     },
@@ -71,11 +73,12 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
   ];
 
   return (
-    <section id="customers" className="relative py-24 sm:py-32 bg-[#030712] border-t border-white/5">
+    <section id="customers" className="relative py-28 sm:py-36 bg-[#030712] border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
+            <Sparkles className="size-3.5" />
             Tailored For High-Assurance Teams
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -87,57 +90,58 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
           </p>
         </div>
 
-        {/* 6 Target Audiences Grid */}
+        {/* 6 Target Audiences Grid (Doppelrand Double-Bezel Enclosure) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {audiences.map((aud) => {
             const Icon = aud.icon;
             return (
               <div
                 key={aud.title}
-                className="cyber-card group"
+                className="double-bezel group cursor-pointer"
+                onClick={() => onSelectAudience(aud.role)}
               >
-                <div className="cyber-card-inner p-6 sm:p-7 flex flex-col justify-between h-full">
+                <div className="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full">
                   <div>
-                    <div className="size-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                      <Icon className="size-5 stroke-[1.5]" />
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="size-12 rounded-2xl bg-cyan-950/50 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                        <Icon className="size-5 stroke-[1.5]" />
+                      </div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+                        Persona
+                      </span>
                     </div>
 
                     <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors text-balance">
                       {aud.title}
                     </h3>
-                    <div className="text-xs font-mono text-slate-400 mb-4 pb-2 border-b border-white/5">
+                    <div className="text-xs font-mono text-cyan-400 mb-4 line-clamp-1">
                       {aud.role}
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-3.5 text-xs">
                       <div>
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 mb-1">
-                          Operational Use Case
-                        </div>
-                        <p className="text-xs text-slate-300 leading-relaxed text-pretty">
+                        <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
+                          Primary Use Case:
+                        </span>
+                        <p className="text-slate-300 leading-relaxed text-pretty">
                           {aud.useCase}
                         </p>
                       </div>
 
-                      <div className="pt-2">
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-1">
-                          Strategic Business ROI
-                        </div>
-                        <p className="text-xs text-slate-400 leading-relaxed text-pretty">
+                      <div className="pt-3 border-t border-white/5">
+                        <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider block mb-1">
+                          Target Outcome:
+                        </span>
+                        <p className="text-slate-400 leading-relaxed font-medium text-pretty">
                           {aud.benefit}
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-white/5">
-                    <button
-                      onClick={() => onSelectAudience(aud.title)}
-                      className="min-h-[44px] py-2 px-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 group/btn rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
-                    >
-                      <span>Request tailored walkthrough</span>
-                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                    </button>
+                  <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 group-hover:text-cyan-300 transition-colors">
+                    <span className="font-mono text-[11px]">Request Tailored Briefing</span>
+                    <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
               </div>

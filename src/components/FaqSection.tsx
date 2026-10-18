@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 
 export const FaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -32,12 +32,12 @@ export const FaqSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-24 sm:py-32 bg-[#050814] border-t border-white/5">
+    <section id="faq" className="relative py-28 sm:py-36 bg-[#040814] border-t border-white/[0.08]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-            <HelpCircle className="size-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
+            <Sparkles className="size-3.5" />
             Knowledge Base
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
@@ -48,44 +48,46 @@ export const FaqSection: React.FC = () => {
           </p>
         </div>
 
-        {/* FAQ Accordion List */}
+        {/* FAQ Accordion List (Doppelrand Enclosures) */}
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className="rounded-2xl border border-white/10 bg-[#070c19] overflow-hidden transition-all duration-300"
+                className="double-bezel group"
               >
-                <button
-                  id={`faq-btn-${index}`}
-                  aria-controls={`faq-panel-${index}`}
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
-                >
-                  <span className="text-sm sm:text-base font-bold text-white leading-snug text-balance">
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`size-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-cyan-400 border-cyan-500/40 bg-cyan-950/40' : ''
-                    }`}
+                <div className="double-bezel-inner overflow-hidden">
+                  <button
+                    id={`faq-btn-${index}`}
+                    aria-controls={`faq-panel-${index}`}
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 cursor-pointer"
                   >
-                    <ChevronDown className="size-4" />
-                  </div>
-                </button>
+                    <span className="text-sm sm:text-base font-bold text-white leading-snug text-balance">
+                      {faq.q}
+                    </span>
+                    <div
+                      className={`size-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                        isOpen ? 'rotate-180 text-cyan-400 border-cyan-500/40 bg-cyan-950/40 shadow-[0_0_15px_rgba(0,240,255,0.2)]' : ''
+                      }`}
+                    >
+                      <ChevronDown className="size-4" />
+                    </div>
+                  </button>
 
-                {isOpen && (
-                  <div
-                    id={`faq-panel-${index}`}
-                    role="region"
-                    aria-labelledby={`faq-btn-${index}`}
-                    className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 font-normal text-pretty"
-                  >
-                    {faq.a}
-                  </div>
-                )}
+                  {isOpen && (
+                    <div
+                      id={`faq-panel-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-btn-${index}`}
+                      className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 font-normal text-pretty animate-in fade-in duration-300"
+                    >
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}

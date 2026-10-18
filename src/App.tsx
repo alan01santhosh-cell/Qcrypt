@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { CryptoMarquee } from './components/CryptoMarquee';
 
 // Lazy-load below-the-fold components to accelerate initial First Contentful Paint (FCP) and LCP
 const ProblemSection = lazy(() =>
@@ -73,6 +74,9 @@ export function App() {
           onExplorePlatform={() => scrollToSection('dashboard-preview')}
         />
 
+        {/* Cryptographic Protocol Transition Infinite Marquee */}
+        <CryptoMarquee />
+
         {/* Below-the-fold components streamed in asynchronously */}
         <Suspense
           fallback={
@@ -95,7 +99,7 @@ export function App() {
           <DashboardPreview />
 
           {/* 6. Why Choose Qcrypt */}
-          <WhyQcrypt />
+          <WhyQcrypt onExploreRemediation={() => scrollToContact('early-access')} />
 
           {/* 7. Target Customers */}
           <TargetCustomers onSelectAudience={(audience) => scrollToContact('demo', audience)} />
