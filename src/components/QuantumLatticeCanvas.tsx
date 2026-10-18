@@ -341,15 +341,35 @@ export const QuantumLatticeCanvas: React.FC = () => {
         }
       }
 
-      // ALWAYS request next frame continuously without interruption
-      animationFrameId = requestAnimationFrame(render);
+      // Continuous loop unless reduced motion is preferred
+      if (!motionQuery.matches) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
-    // Start continuous animation loop
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      if (!e.matches) {
+        lastTime = performance.now();
+        animationFrameId = requestAnimationFrame(render);
+      } else {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
+    if (motionQuery.addEventListener) {
+      motionQuery.addEventListener('change', handleMotionChange);
+    }
+
+    // Start initial frame render
     animationFrameId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      if (motionQuery.removeEventListener) {
+        motionQuery.removeEventListener('change', handleMotionChange);
+      }
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);

@@ -73,12 +73,12 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
   ];
 
   return (
-    <section id="customers" className="relative py-28 sm:py-36 bg-[#030712]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="customers" className="relative py-28 sm:py-36 bg-[#030712]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Tailored For High-Assurance Teams
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -97,14 +97,23 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
             return (
               <div
                 key={aud.title}
-                className="double-bezel group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={`Request tailored briefing for ${aud.title}`}
+                className="double-bezel group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 onClick={() => onSelectAudience(aud.role)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectAudience(aud.role);
+                  }
+                }}
               >
                 <div className="double-bezel-inner p-6 sm:p-7 flex flex-col justify-between h-full">
                   <div>
                     <div className="flex items-center justify-between mb-5">
                       <div className="size-12 rounded-2xl bg-cyan-950/50 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                        <Icon className="size-5 stroke-[1.5]" />
+                        <Icon className="size-5 stroke-[1.5]" aria-hidden="true" />
                       </div>
                       <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
                         Persona
@@ -141,7 +150,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
 
                   <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 group-hover:text-cyan-300 transition-colors">
                     <span className="font-mono text-[11px]">Request Tailored Briefing</span>
-                    <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
                   </div>
                 </div>
               </div>

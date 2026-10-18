@@ -115,12 +115,12 @@ cfg := &tls.Config{
   };
 
   return (
-    <section id="solution" className="relative py-28 sm:py-36 bg-[#030712]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="solution" className="relative py-28 sm:py-36 bg-[#030712]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             The Qcrypt Engine
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -134,15 +134,18 @@ cfg := &tls.Config{
         </div>
 
         {/* Step Selector Tabs */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10" role="tablist" aria-label="Migration pipeline step tabs">
           {steps.map((s, idx) => {
             const Icon = s.icon;
             const isSelected = idx === activeStep;
             return (
               <button
                 key={s.step}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
                 onClick={() => setActiveStep(idx)}
-                className={`p-3.5 sm:p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
+                className={`p-3.5 sm:p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                   isSelected
                     ? 'bg-cyan-950/40 border-cyan-400 shadow-[0_0_25px_rgba(0,240,255,0.15)] -translate-y-0.5'
                     : 'bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]'
@@ -152,7 +155,7 @@ cfg := &tls.Config{
                   <span className={`font-mono text-xs font-bold ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`}>
                     STEP {s.step}
                   </span>
-                  <Icon className={`size-4 ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`} />
+                  <Icon className={`size-4 ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`} aria-hidden="true" />
                 </div>
                 <div className="text-sm font-bold text-white truncate">
                   {s.shortTitle}
@@ -195,7 +198,7 @@ cfg := &tls.Config{
                 </div>
 
                 <div className="text-xs font-mono text-slate-400 pt-4 border-t border-white/10 flex items-center gap-2">
-                  <CheckCircle className="size-4 text-emerald-400 shrink-0" />
+                  <CheckCircle className="size-4 text-emerald-400 shrink-0" aria-hidden="true" />
                   <span>{current.metrics}</span>
                 </div>
               </div>
@@ -205,21 +208,23 @@ cfg := &tls.Config{
                 <div>
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-xs font-mono">
                     <span className="text-cyan-400 flex items-center gap-1.5">
-                      <Terminal className="size-3.5" />
+                      <Terminal className="size-3.5" aria-hidden="true" />
                       Qcrypt Intelligence Artifact
                     </span>
                     <button
+                      type="button"
                       onClick={handleCopy}
-                      className="px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                      aria-label="Copy snippet to clipboard"
+                      className="px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                     >
                       {copiedCode ? (
-                        <>
-                          <Check className="size-3 text-emerald-400" />
-                          <span className="text-emerald-400">Copied</span>
-                        </>
+                        <span role="status" aria-live="polite" className="flex items-center gap-1.5 text-emerald-400">
+                          <Check className="size-3 text-emerald-400" aria-hidden="true" />
+                          <span>Copied</span>
+                        </span>
                       ) : (
                         <>
-                          <Copy className="size-3 text-slate-400" />
+                          <Copy className="size-3 text-slate-400" aria-hidden="true" />
                           <span>Copy Snippet</span>
                         </>
                       )}
@@ -233,11 +238,12 @@ cfg := &tls.Config{
 
                 <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
                   <button
+                    type="button"
                     onClick={onOpenDashboard}
-                    className="group inline-flex items-center gap-2 text-xs font-bold font-mono text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer"
+                    className="group inline-flex items-center gap-2 text-xs font-bold font-mono text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-sm"
                   >
                     <span>Inspect Live in Interactive CBOM Sandbox</span>
-                    <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </button>
                 </div>
               </div>

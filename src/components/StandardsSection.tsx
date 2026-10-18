@@ -38,12 +38,12 @@ export const StandardsSection: React.FC = () => {
   const activeParams = parameterTable[selectedStandard];
 
   return (
-    <section id="standards" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="standards" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Award className="size-3.5" />
+            <Award className="size-3.5" aria-hidden="true" />
             Global Cryptographic Frameworks
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -63,7 +63,7 @@ export const StandardsSection: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
             >
               <span>Visit Official NIST Post-Quantum Cryptography Portal</span>
-              <ExternalLink className="size-3.5 shrink-0" />
+              <ExternalLink className="size-3.5 shrink-0" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -120,10 +120,10 @@ export const StandardsSection: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-emerald-400">
                   <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="size-3.5" />
+                    <ShieldCheck className="size-3.5" aria-hidden="true" />
                     <span>NIST Benchmark Aligned</span>
                   </span>
-                  <span className="text-slate-400">Published 2024</span>
+                  <span className="text-slate-400 tabular-nums">Published 2024</span>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ export const StandardsSection: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-6 border-b border-white/10">
               <div>
                 <h4 className="text-base font-bold text-white flex items-center gap-2">
-                  <Cpu className="size-4 text-cyan-400" />
+                  <Cpu className="size-4 text-cyan-400" aria-hidden="true" />
                   NIST Parameter Specification Matrix
                 </h4>
                 <p className="text-xs text-slate-400">
@@ -145,7 +145,7 @@ export const StandardsSection: React.FC = () => {
               </div>
 
               {/* Tabs */}
-              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/50 border border-white/10 text-xs font-mono">
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/50 border border-white/10 text-xs font-mono" role="tablist" aria-label="NIST FIPS parameter specifications">
                 {[
                   { id: 'fips203', label: 'FIPS 203 (ML-KEM)' },
                   { id: 'fips204', label: 'FIPS 204 (ML-DSA)' },
@@ -153,8 +153,11 @@ export const StandardsSection: React.FC = () => {
                 ].map((tab) => (
                   <button
                     key={tab.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={selectedStandard === tab.id}
                     onClick={() => setSelectedStandard(tab.id as any)}
-                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                       selectedStandard === tab.id
                         ? 'bg-cyan-950/80 text-cyan-300 font-bold border border-cyan-500/40 shadow-[0_0_15px_rgba(0,240,255,0.2)]'
                         : 'text-slate-400 hover:text-white'
@@ -182,8 +185,8 @@ export const StandardsSection: React.FC = () => {
                     <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
                       <td className="py-3 px-3 font-mono font-bold text-cyan-300">{lvl.param}</td>
                       <td className="py-3 px-3 text-slate-300 font-medium">{lvl.category}</td>
-                      <td className="py-3 px-3 font-mono text-emerald-400">{lvl.pkSize}</td>
-                      <td className="py-3 px-3 font-mono text-amber-400">{lvl.ctSize}</td>
+                      <td className="py-3 px-3 font-mono text-emerald-400 tabular-nums">{lvl.pkSize}</td>
+                      <td className="py-3 px-3 font-mono text-amber-400 tabular-nums">{lvl.ctSize}</td>
                       <td className="py-3 px-3 text-slate-400">{lvl.primaryUse}</td>
                     </tr>
                   ))}

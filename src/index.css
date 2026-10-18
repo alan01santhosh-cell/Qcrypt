@@ -10,6 +10,7 @@
   
   html {
     color-scheme: dark;
+    caret-color: #00f0ff;
   }
 
   body {
@@ -54,7 +55,7 @@
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.85);
-  transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: border-color 0.6s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.6s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .double-bezel:hover {
@@ -76,7 +77,7 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
-  transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: border-color 0.5s cubic-bezier(0.32, 0.72, 0, 1), transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.5s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .cyber-card:hover {
@@ -94,7 +95,7 @@
 
 /* Button-in-Button interactive kinetics */
 .btn-island-primary {
-  transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .btn-island-primary:active {
   transform: scale(0.98);

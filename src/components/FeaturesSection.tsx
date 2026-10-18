@@ -76,12 +76,12 @@ export const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="features" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Product Capabilities
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -104,7 +104,7 @@ export const FeaturesSection: React.FC = () => {
                     {/* Card Header */}
                     <div className="flex items-center justify-between mb-5">
                       <div className="size-12 rounded-2xl bg-cyan-950/50 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                        <Icon className="size-5 stroke-[1.5]" />
+                        <Icon className="size-5 stroke-[1.5]" aria-hidden="true" />
                       </div>
                       <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
                         {feat.badge}
@@ -131,7 +131,7 @@ export const FeaturesSection: React.FC = () => {
 
                       <div className="pt-3 border-t border-white/5">
                         <div className="text-[10px] font-mono uppercase text-cyan-300 tracking-wider mb-1 flex items-center gap-1.5">
-                          <CheckCircle2 className="size-3.5 text-cyan-400" />
+                          <CheckCircle2 className="size-3.5 text-cyan-400" aria-hidden="true" />
                           Why It Matters
                         </div>
                         <p className="text-xs text-slate-400 leading-relaxed font-medium text-pretty">
@@ -143,7 +143,7 @@ export const FeaturesSection: React.FC = () => {
 
                   <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400 group-hover:text-slate-300">
                     <span className="font-mono text-[11px]">CycloneDX 1.6 Supported</span>
-                    <ArrowUpRight className="size-4 text-cyan-400 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    <ArrowUpRight className="size-4 text-cyan-400 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </div>
                 </div>
               </div>

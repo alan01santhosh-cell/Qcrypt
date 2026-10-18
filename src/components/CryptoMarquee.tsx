@@ -13,22 +13,26 @@ export const CryptoMarquee: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full overflow-hidden py-4 border-y border-white/[0.08] bg-[#030611]/80 backdrop-blur-md">
+    <div
+      role="region"
+      aria-label="Cryptographic protocol migration transitions"
+      className="relative w-full overflow-hidden py-4 border-y border-white/[0.08] bg-[#030611]/80 backdrop-blur-md"
+    >
       {/* Left/Right Vignette gradients */}
       <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#02040a] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#02040a] to-transparent z-10 pointer-events-none" />
 
-      <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+      <div className="flex w-max animate-marquee motion-reduce:animate-none hover:[animation-play-state:paused]">
         {[...transitions, ...transitions].map((item, idx) => (
           <div
             key={idx}
             className="flex items-center gap-3 mx-4 px-4 py-2 rounded-xl bg-white/[0.025] border border-white/[0.08] text-xs font-mono group hover:border-cyan-400/40 hover:bg-white/[0.05] transition-colors"
           >
             <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
-              <span className="size-1.5 rounded-full bg-rose-500 animate-pulse" />
+              <span className="size-1.5 rounded-full bg-rose-500 animate-pulse motion-reduce:animate-none" aria-hidden="true" />
               {item.from}
             </span>
-            <ArrowRight className="size-3 text-cyan-400" />
+            <ArrowRight className="size-3 text-cyan-400" aria-hidden="true" />
             <span className="text-cyan-300 font-bold">{item.to}</span>
             <span className="h-3 w-px bg-white/10 mx-1" />
             <span className="text-[10px] text-slate-400 font-sans tracking-wide">{item.std}</span>

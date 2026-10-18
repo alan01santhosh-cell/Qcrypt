@@ -69,12 +69,12 @@ export const WhyQcrypt: React.FC<WhyQcryptProps> = ({ onExploreRemediation = () 
   ];
 
   return (
-    <section id="why-qcrypt" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="why-qcrypt" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Competitive Differentiator
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
@@ -100,7 +100,7 @@ export const WhyQcrypt: React.FC<WhyQcryptProps> = ({ onExploreRemediation = () 
                 <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
                   <div>
                     <div className="size-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-500">
-                      <Icon className="size-6 stroke-[1.5]" />
+                      <Icon className="size-6 stroke-[1.5]" aria-hidden="true" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-3 text-balance">
                       {diff.title}
@@ -144,7 +144,7 @@ export const WhyQcrypt: React.FC<WhyQcryptProps> = ({ onExploreRemediation = () 
                     <td className="py-3.5 px-3 text-slate-400">{row.manualAudit}</td>
                     <td className="py-3.5 px-3 text-cyan-300 font-semibold bg-cyan-950/20">
                       <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" />
+                        <CheckCircle2 className="size-3.5 text-cyan-400 shrink-0" aria-hidden="true" />
                         <span>{row.qcrypt}</span>
                       </div>
                     </td>

@@ -60,7 +60,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     }
 
     setErrors(errs);
-    return Object.keys(errs).length === 0;
+    const keys = Object.keys(errs);
+    if (keys.length > 0) {
+      const firstKey = keys[0];
+      const fieldId = firstKey === 'email' ? 'businessEmail' : firstKey === 'company' ? 'companyName' : firstKey;
+      document.getElementById(fieldId)?.focus();
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -118,12 +125,12 @@ ${fullName}`;
   };
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36 bg-[#030712]/75 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="contact" className="relative py-28 sm:py-36 bg-[#030712]/75 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Engage With Our Engineering Team
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
@@ -131,12 +138,12 @@ ${fullName}`;
           </h2>
           <p className="text-base text-slate-300 leading-relaxed text-pretty">
             Start a conversation with Qcrypt to explore cryptographic visibility, risk prioritization, and your
-            organization's post-quantum migration needs.
+            organization’s post-quantum migration needs.
           </p>
         </div>
 
         {/* Mode Selector Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10" role="tablist" aria-label="Inquiry mode selection">
           {[
             { id: 'demo', label: 'Request a Demo' },
             { id: 'early-access', label: 'Get Early Access' },
@@ -144,11 +151,14 @@ ${fullName}`;
           ].map((tab) => (
             <button
               key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={mode === tab.id}
               onClick={() => {
                 setMode(tab.id as any);
                 setSubmittedData(null);
               }}
-              className={`px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+              className={`px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer ${
                 mode === tab.id
                   ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_20px_rgba(0,240,255,0.3)]'
                   : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
@@ -166,7 +176,7 @@ ${fullName}`;
               /* Success / Ready-to-Send State with Mailto Integration */
               <div className="text-left space-y-6 animate-in fade-in duration-300">
                 <div className="flex items-center gap-3 p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/40">
-                  <CheckCircle2 className="size-6 text-cyan-400 shrink-0" />
+                  <CheckCircle2 className="size-6 text-cyan-400 shrink-0" aria-hidden="true" />
                   <div>
                     <h3 className="text-base font-bold text-white text-balance">
                       Your inquiry has been formulated and is ready to dispatch.
@@ -181,10 +191,11 @@ ${fullName}`;
                   <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/10 text-slate-400">
                     <span>Generated Message Payload</span>
                     <button
+                      type="button"
                       onClick={handleCopy}
                       className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-sans text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-sm"
                     >
-                      <Copy className="size-3.5" />
+                      <Copy className="size-3.5" aria-hidden="true" />
                       {copied ? 'Copied to Clipboard!' : 'Copy Text'}
                     </button>
                   </div>
@@ -195,10 +206,11 @@ ${fullName}`;
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
                   <button
+                    type="button"
                     onClick={handleReset}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                   >
-                    <RotateCcw className="size-3.5" />
+                    <RotateCcw className="size-3.5" aria-hidden="true" />
                     Submit Another Request
                   </button>
 
@@ -206,9 +218,9 @@ ${fullName}`;
                     href={submittedData.mailtoUrl}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold text-xs tracking-wide shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                   >
-                    <Mail className="size-4" />
+                    <Mail className="size-4" aria-hidden="true" />
                     <span>Open in Email Client to Send Directly</span>
-                    <ExternalLink className="size-3.5 ml-1" />
+                    <ExternalLink className="size-3.5 ml-1" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -226,7 +238,7 @@ ${fullName}`;
                       name="name"
                       type="text"
                       autoComplete="name"
-                      placeholder="e.g. Dr. Jane Doe"
+                      placeholder="e.g. Dr. Jane Doe…"
                       value={fullName}
                       aria-invalid={errors.fullName ? 'true' : 'false'}
                       aria-describedby={errors.fullName ? 'fullName-error' : undefined}
@@ -239,8 +251,8 @@ ${fullName}`;
                       }`}
                     />
                     {errors.fullName && (
-                      <p id="fullName-error" role="alert" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
-                        <AlertCircle className="size-3" /> {errors.fullName}
+                      <p id="fullName-error" role="alert" aria-live="polite" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
+                        <AlertCircle className="size-3" aria-hidden="true" /> {errors.fullName}
                       </p>
                     )}
                   </div>
@@ -255,7 +267,8 @@ ${fullName}`;
                       name="email"
                       type="email"
                       autoComplete="email"
-                      placeholder="name@company.com"
+                      spellCheck={false}
+                      placeholder="name@company.com…"
                       value={email}
                       aria-invalid={errors.email ? 'true' : 'false'}
                       aria-describedby={errors.email ? 'businessEmail-error' : undefined}
@@ -268,8 +281,8 @@ ${fullName}`;
                       }`}
                     />
                     {errors.email && (
-                      <p id="businessEmail-error" role="alert" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
-                        <AlertCircle className="size-3" /> {errors.email}
+                      <p id="businessEmail-error" role="alert" aria-live="polite" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
+                        <AlertCircle className="size-3" aria-hidden="true" /> {errors.email}
                       </p>
                     )}
                   </div>
@@ -284,7 +297,7 @@ ${fullName}`;
                       name="organization"
                       type="text"
                       autoComplete="organization"
-                      placeholder="e.g. Acquia Technologies"
+                      placeholder="e.g. Acquia Technologies…"
                       value={company}
                       aria-invalid={errors.company ? 'true' : 'false'}
                       aria-describedby={errors.company ? 'companyName-error' : undefined}
@@ -297,8 +310,8 @@ ${fullName}`;
                       }`}
                     />
                     {errors.company && (
-                      <p id="companyName-error" role="alert" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
-                        <AlertCircle className="size-3" /> {errors.company}
+                      <p id="companyName-error" role="alert" aria-live="polite" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
+                        <AlertCircle className="size-3" aria-hidden="true" /> {errors.company}
                       </p>
                     )}
                   </div>
@@ -313,7 +326,7 @@ ${fullName}`;
                       name="organization-title"
                       type="text"
                       autoComplete="organization-title"
-                      placeholder="e.g. CISO, Principal Security Architect, DevSecOps Lead"
+                      placeholder="e.g. CISO, Principal Security Architect, DevSecOps Lead…"
                       value={jobTitle}
                       aria-invalid={errors.jobTitle ? 'true' : 'false'}
                       aria-describedby={errors.jobTitle ? 'jobTitle-error' : undefined}
@@ -326,8 +339,8 @@ ${fullName}`;
                       }`}
                     />
                     {errors.jobTitle && (
-                      <p id="jobTitle-error" role="alert" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
-                        <AlertCircle className="size-3" /> {errors.jobTitle}
+                      <p id="jobTitle-error" role="alert" aria-live="polite" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
+                        <AlertCircle className="size-3" aria-hidden="true" /> {errors.jobTitle}
                       </p>
                     )}
                   </div>
@@ -372,7 +385,7 @@ ${fullName}`;
                     id="message"
                     name="message"
                     rows={4}
-                    placeholder="Tell us about your stack (e.g., Go, Rust, Java, Kubernetes), cryptographic needs, or upcoming audit timelines..."
+                    placeholder="Tell us about your stack (e.g., Go, Rust, Java, Kubernetes), cryptographic needs, or upcoming audit timelines…"
                     value={message}
                     aria-invalid={errors.message ? 'true' : 'false'}
                     aria-describedby={errors.message ? 'message-error' : undefined}
@@ -385,15 +398,15 @@ ${fullName}`;
                     }`}
                   />
                   {errors.message && (
-                    <p id="message-error" role="alert" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
-                      <AlertCircle className="size-3" /> {errors.message}
+                    <p id="message-error" role="alert" aria-live="polite" className="text-[11px] text-rose-400 mt-1 font-mono flex items-center gap-1">
+                      <AlertCircle className="size-3" aria-hidden="true" /> {errors.message}
                     </p>
                   )}
                 </div>
 
                 {/* Privacy Note */}
                 <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex items-start gap-2.5 text-xs text-slate-400 leading-relaxed">
-                  <ShieldCheck className="size-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <ShieldCheck className="size-4 text-cyan-400 shrink-0 mt-0.5" aria-hidden="true" />
                   <div className="text-pretty">
                     <strong className="text-slate-300">Confidentiality &amp; Privacy Commitment:</strong> We respect
                     your security posture. Contact information is used solely to respond to your technical inquiry.
@@ -409,7 +422,7 @@ ${fullName}`;
                   >
                     <span>Send {mode === 'demo' ? 'Demo Request' : mode === 'early-access' ? 'Early Access Application' : 'Inquiry'}</span>
                     <div className="btn-icon-pod size-8 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300">
-                      <Send className="size-4 stroke-[2.2]" />
+                      <Send className="size-4 stroke-[2.2]" aria-hidden="true" />
                     </div>
                   </button>
                 </div>

@@ -58,6 +58,14 @@ export function App() {
 
   return (
     <div className="min-h-[100dvh] bg-[#02040a] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white relative">
+      {/* Accessible Skip Link for Keyboard Navigation */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] px-4 py-2 bg-gradient-to-r from-cyan-400 to-sky-400 text-slate-950 font-bold text-xs rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-white transition-transform"
+      >
+        Skip to main content
+      </a>
+
       {/* High-End Tactile Film-Grain Overlay */}
       <div className="film-grain" aria-hidden="true" />
 
@@ -70,7 +78,7 @@ export function App() {
         onOpenEarlyAccess={() => scrollToContact('early-access')}
       />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* 1. Hero Section (Immediate Critical Render) */}
         <Hero
           onRequestDemo={() => scrollToContact('demo')}
@@ -86,7 +94,7 @@ export function App() {
           fallback={
             <div className="py-20 flex items-center justify-center text-cyan-400/60 font-mono text-xs">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-2" />
-              Initializing cryptographic modules...
+              Initializing cryptographic modules…
             </div>
           }
         >

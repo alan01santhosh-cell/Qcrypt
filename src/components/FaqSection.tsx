@@ -7,7 +7,7 @@ export const FaqSection: React.FC = () => {
   const faqs = [
     {
       q: 'Why should technology companies prepare now if cryptographically relevant quantum computers do not exist yet?',
-      a: 'Preparing for quantum computing is a present-day data security challenge due to "Harvest Now, Decrypt Later" (HNDL). Hostile adversaries and state-sponsored groups are actively recording encrypted network traffic today. Once quantum computing reaches cryptographic relevance, this recorded data can be decrypted retroactively. If your enterprise handles intellectual property, banking records, health data, or state secrets that must remain confidential for 10+ years, your exposure window is already open. Furthermore, migrating enterprise-wide cryptographic infrastructure typically takes 3 to 7 years.'
+      a: 'Preparing for quantum computing is a present-day data security challenge due to “Harvest Now, Decrypt Later” (HNDL). Hostile adversaries and state-sponsored groups are actively recording encrypted network traffic today. Once quantum computing reaches cryptographic relevance, this recorded data can be decrypted retroactively. If your enterprise handles intellectual property, banking records, health data, or state secrets that must remain confidential for 10+ years, your exposure window is already open. Furthermore, migrating enterprise-wide cryptographic infrastructure typically takes 3 to 7 years.'
     },
     {
       q: 'What is a Cryptographic Bill of Materials (CBOM) and why do we need one?',
@@ -32,12 +32,12 @@ export const FaqSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
+    <section id="faq" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08] scroll-mt-28 sm:scroll-mt-36">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-5">
-            <Sparkles className="size-3.5" />
+            <Sparkles className="size-3.5" aria-hidden="true" />
             Knowledge Base
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
@@ -59,11 +59,12 @@ export const FaqSection: React.FC = () => {
               >
                 <div className="double-bezel-inner overflow-hidden">
                   <button
+                    type="button"
                     id={`faq-btn-${index}`}
                     aria-controls={`faq-panel-${index}`}
                     aria-expanded={isOpen}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 cursor-pointer"
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"
                   >
                     <span className="text-sm sm:text-base font-bold text-white leading-snug text-balance">
                       {faq.q}
@@ -73,7 +74,7 @@ export const FaqSection: React.FC = () => {
                         isOpen ? 'rotate-180 text-cyan-400 border-cyan-500/40 bg-cyan-950/40 shadow-[0_0_15px_rgba(0,240,255,0.2)]' : ''
                       }`}
                     >
-                      <ChevronDown className="size-4" />
+                      <ChevronDown className="size-4" aria-hidden="true" />
                     </div>
                   </button>
 

@@ -108,7 +108,7 @@ tlsConfig := &tls.Config{
         {/* Value Proposition Strip */}
         <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-2xl bg-white/[0.035] border border-white/10 backdrop-blur-md max-w-3xl mx-auto mb-12 shadow-xl text-xs sm:text-sm text-slate-200">
           <div className="flex items-center gap-2 text-cyan-400 font-medium">
-            <Sparkles className="size-4 text-cyan-400 shrink-0" />
+            <Sparkles className="size-4 text-cyan-400 shrink-0" aria-hidden="true" />
             <span className="text-slate-400">Core Engine:</span>
           </div>
           <span className="font-semibold text-white tracking-wide">
@@ -120,19 +120,21 @@ tlsConfig := &tls.Config{
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-20">
           {/* CTA 1: Request a Demo (Button-in-Button) */}
           <button
+            type="button"
             onClick={onRequestDemo}
-            className="w-full sm:w-auto group btn-island-primary relative inline-flex items-center justify-center gap-3 pl-7 pr-2.5 py-2.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_45px_rgba(0,240,255,0.6)] cursor-pointer"
+            className="w-full sm:w-auto group btn-island-primary relative inline-flex items-center justify-center gap-3 pl-7 pr-2.5 py-2.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_45px_rgba(0,240,255,0.6)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <span>Request a Demo</span>
             <div className="btn-icon-pod size-8 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300">
-              <ArrowRight className="size-4 stroke-[2.5]" />
+              <ArrowRight className="size-4 stroke-[2.5]" aria-hidden="true" />
             </div>
           </button>
 
           {/* CTA 2: Get Early Access */}
           <button
+            type="button"
             onClick={onGetEarlyAccess}
-            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-sm border border-white/15 hover:border-cyan-400/50 backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] cursor-pointer"
+            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-sm border border-white/15 hover:border-cyan-400/50 backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <span>Get Early Access</span>
             <span className="text-cyan-400 text-xs px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 font-mono">
@@ -142,11 +144,12 @@ tlsConfig := &tls.Config{
 
           {/* CTA 3: Explore Platform */}
           <button
+            type="button"
             onClick={onExplorePlatform}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-slate-300 hover:text-white font-medium text-sm transition-all duration-300 hover:bg-white/[0.06] active:scale-[0.98] cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-slate-300 hover:text-white font-medium text-sm transition-all duration-300 hover:bg-white/[0.06] active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <span>Explore Platform</span>
-            <ChevronRight className="size-4 opacity-60" />
+            <ChevronRight className="size-4 opacity-60" aria-hidden="true" />
           </button>
         </div>
 
@@ -166,7 +169,7 @@ tlsConfig := &tls.Config{
                 </div>
                 <div className="h-4 w-px bg-white/15 mx-1" />
                 <span className="font-mono text-xs text-slate-400 flex items-center gap-2">
-                  <Terminal className="size-3.5 text-cyan-400" />
+                  <Terminal className="size-3.5 text-cyan-400" aria-hidden="true" />
                   <span>qcrypt-agent &bull; live repository AST scanner</span>
                 </span>
               </div>
@@ -174,23 +177,24 @@ tlsConfig := &tls.Config{
               {/* Status and Demo Data Badge */}
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-950/60 border border-amber-500/30 text-amber-300 font-mono text-[11px] tabular-nums">
-                  <Activity className="size-3 animate-pulse motion-reduce:animate-none" />
+                  <Activity className="size-3 animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                   Live AST Telemetry &bull; CycloneDX 1.6
                 </span>
                 <button
+                  type="button"
                   onClick={() => setIsScanning(!isScanning)}
                   aria-label="Toggle scan simulation"
-                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 cursor-pointer"
+                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 cursor-pointer"
                   title="Toggle scan simulation"
                 >
                   {isScanning ? (
                     <>
-                      <RotateCcw className="size-3 text-cyan-400 animate-spin motion-reduce:animate-none" />
+                      <RotateCcw className="size-3 text-cyan-400 animate-spin motion-reduce:animate-none" aria-hidden="true" />
                       <span>Scanning</span>
                     </>
                   ) : (
                     <>
-                      <Play className="size-3 text-cyan-400" />
+                      <Play className="size-3 text-cyan-400" aria-hidden="true" />
                       <span>Resume</span>
                     </>
                   )}
@@ -205,7 +209,7 @@ tlsConfig := &tls.Config{
                 <div>
                   <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 pb-3 mb-3 border-b border-white/10 gap-2">
                     <span className="text-cyan-400 flex items-center gap-1.5 truncate">
-                      <Cpu className="size-3.5 shrink-0" />
+                      <Cpu className="size-3.5 shrink-0" aria-hidden="true" />
                       AST Parser &amp; Cryptographic Call Tracer
                     </span>
                     <span className="text-emerald-400 tabular-nums shrink-0">18.2k SLOC Scanned</span>
@@ -261,7 +265,7 @@ tlsConfig := &tls.Config{
                 <div className="bg-[#040813] border border-white/10 rounded-2xl p-4 sm:p-5">
                   <div className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-3 flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
-                      <ShieldAlert className="size-3.5" />
+                      <ShieldAlert className="size-3.5" aria-hidden="true" />
                       Quantum Risk Profile
                     </span>
                     <span className="text-[10px] text-slate-400">AST Analysis</span>
@@ -271,7 +275,7 @@ tlsConfig := &tls.Config{
                     <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-500/30">
                       <div className="text-2xl font-black text-rose-400 tabular-nums">418</div>
                       <div className="text-[11px] text-slate-300 font-medium">Asymmetric Crypto Assets</div>
-                      <div className="text-[10px] text-rose-400 font-mono mt-0.5">Shor's Vulnerable</div>
+                      <div className="text-[10px] text-rose-400 font-mono mt-0.5">Shor’s Vulnerable</div>
                     </div>
                     <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
                       <div className="text-2xl font-black text-emerald-400 tabular-nums">1,064</div>
@@ -285,7 +289,7 @@ tlsConfig := &tls.Config{
                     <div className="text-xs font-mono text-slate-400 mb-2 flex items-center justify-between">
                       <span>Click to inspect AST code diff:</span>
                     </div>
-                    <div className="grid grid-cols-3 gap-1.5 mb-3">
+                    <div className="grid grid-cols-3 gap-1.5 mb-3" role="tablist" aria-label="Algorithm migration code diff tabs">
                       {[
                         { id: 'kem', label: 'ML-KEM (PQC)' },
                         { id: 'rsa', label: 'RSA-2048' },
@@ -293,8 +297,11 @@ tlsConfig := &tls.Config{
                       ].map((tab) => (
                         <button
                           key={tab.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={selectedAlgoTab === tab.id}
                           onClick={() => setSelectedAlgoTab(tab.id as any)}
-                          className={`px-2 py-1.5 rounded-lg text-[10px] font-mono border transition-all cursor-pointer ${
+                          className={`px-2 py-1.5 rounded-lg text-[10px] font-mono border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                             selectedAlgoTab === tab.id
                               ? 'bg-cyan-950/80 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_10px_rgba(0,240,255,0.2)]'
                               : 'bg-white/[0.03] border-white/10 text-slate-400 hover:text-white'
