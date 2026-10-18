@@ -1,16 +1,38 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ProblemSection } from './components/ProblemSection';
-import { SolutionSection } from './components/SolutionSection';
-import { FeaturesSection } from './components/FeaturesSection';
-import { DashboardPreview } from './components/DashboardPreview';
-import { WhyQcrypt } from './components/WhyQcrypt';
-import { TargetCustomers } from './components/TargetCustomers';
-import { StandardsSection } from './components/StandardsSection';
-import { FaqSection } from './components/FaqSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
+
+// Lazy-load below-the-fold components to accelerate initial First Contentful Paint (FCP) and LCP
+const ProblemSection = lazy(() =>
+  import('./components/ProblemSection').then((m) => ({ default: m.ProblemSection }))
+);
+const SolutionSection = lazy(() =>
+  import('./components/SolutionSection').then((m) => ({ default: m.SolutionSection }))
+);
+const FeaturesSection = lazy(() =>
+  import('./components/FeaturesSection').then((m) => ({ default: m.FeaturesSection }))
+);
+const DashboardPreview = lazy(() =>
+  import('./components/DashboardPreview').then((m) => ({ default: m.DashboardPreview }))
+);
+const WhyQcrypt = lazy(() =>
+  import('./components/WhyQcrypt').then((m) => ({ default: m.WhyQcrypt }))
+);
+const TargetCustomers = lazy(() =>
+  import('./components/TargetCustomers').then((m) => ({ default: m.TargetCustomers }))
+);
+const StandardsSection = lazy(() =>
+  import('./components/StandardsSection').then((m) => ({ default: m.StandardsSection }))
+);
+const FaqSection = lazy(() =>
+  import('./components/FaqSection').then((m) => ({ default: m.FaqSection }))
+);
+const ContactSection = lazy(() =>
+  import('./components/ContactSection').then((m) => ({ default: m.ContactSection }))
+);
+const Footer = lazy(() =>
+  import('./components/Footer').then((m) => ({ default: m.Footer }))
+);
 
 export function App() {
   const [contactMode, setContactMode] = useState<'demo' | 'early-access' | 'contact'>('demo');
@@ -44,52 +66,53 @@ export function App() {
       />
 
       <main className="flex-1">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section (Immediate Critical Render) */}
         <Hero
           onRequestDemo={() => scrollToContact('demo')}
           onGetEarlyAccess={() => scrollToContact('early-access')}
           onExplorePlatform={() => scrollToSection('dashboard-preview')}
         />
 
-        {/* 2. Problem Section */}
-        <ProblemSection
-          onLearnMore={() => scrollToSection('solution')}
-        />
+        {/* Below-the-fold components streamed in asynchronously */}
+        <Suspense
+          fallback={
+            <div className="py-20 flex items-center justify-center text-cyan-400/60 font-mono text-xs">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-2" />
+              Initializing cryptographic modules...
+            </div>
+          }
+        >
+          {/* 2. Problem Section */}
+          <ProblemSection onLearnMore={() => scrollToSection('solution')} />
 
-        {/* 3. Solution Section */}
-        <SolutionSection
-          onOpenDashboard={() => scrollToSection('dashboard-preview')}
-        />
+          {/* 3. Solution Section */}
+          <SolutionSection onOpenDashboard={() => scrollToSection('dashboard-preview')} />
 
-        {/* 4. Product Features & Customer Benefits */}
-        <FeaturesSection />
+          {/* 4. Product Features & Customer Benefits */}
+          <FeaturesSection />
 
-        {/* 5. Product Dashboard Preview */}
-        <DashboardPreview />
+          {/* 5. Product Dashboard Preview */}
+          <DashboardPreview />
 
-        {/* 6. Why Choose Qcrypt */}
-        <WhyQcrypt />
+          {/* 6. Why Choose Qcrypt */}
+          <WhyQcrypt />
 
-        {/* 7. Target Customers */}
-        <TargetCustomers
-          onSelectAudience={(audience) => scrollToContact('demo', audience)}
-        />
+          {/* 7. Target Customers */}
+          <TargetCustomers onSelectAudience={(audience) => scrollToContact('demo', audience)} />
 
-        {/* 8. Standards and Credibility */}
-        <StandardsSection />
+          {/* 8. Standards and Credibility */}
+          <StandardsSection />
 
-        {/* 9. FAQ Section */}
-        <FaqSection />
+          {/* 9. FAQ Section */}
+          <FaqSection />
 
-        {/* 10. Conversion Section & Contact Form */}
-        <ContactSection
-          initialMode={contactMode}
-          initialRole={selectedRole}
-        />
+          {/* 10. Conversion Section & Contact Form */}
+          <ContactSection initialMode={contactMode} initialRole={selectedRole} />
+
+          {/* Footer */}
+          <Footer />
+        </Suspense>
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

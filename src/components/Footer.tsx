@@ -4,6 +4,8 @@ import {
   ArrowUp
 } from 'lucide-react';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -212,7 +214,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Legal / Disclaimer Row */}
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
           <div>
-            &copy; <span className="tabular-nums">{new Date().getFullYear()}</span> Qcrypt Security Inc. All rights reserved. Post-Quantum Cryptography Migration Intelligence.
+            &copy; <span className="tabular-nums">{CURRENT_YEAR}</span> Qcrypt Security Inc. All rights reserved. Post-Quantum Cryptography Migration Intelligence.
           </div>
           <div className="text-center md:text-right">
             Designed for high-assurance cybersecurity architectures.

@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth bg-[#030712] text-slate-100 antialiased selection:bg-[#00f0ff]/30 selection:text-white">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
@@ -15,17 +15,25 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Qcrypt — Post-Quantum Cryptography (PQC) Migration Intelligence" />
     <meta property="og:description" content="Finds quantum-vulnerable crypto, ranks fixes by risk, gives a NIST-aligned migration plan." />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="./og-image.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="Qcrypt — Post-Quantum Cryptography (PQC) Migration Intelligence" />
     <meta property="twitter:description" content="Finds quantum-vulnerable crypto, ranks fixes by risk, gives a NIST-aligned migration plan." />
 
-    <!-- Fonts: Plus Jakarta Sans & JetBrains Mono (Taste Skill requirement: No Inter, use premium typography) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Performance: DNS Prefetch & Preconnect for High-Speed Font Fetching -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Non-Blocking Google Fonts Loading with display=swap and print-to-all switch -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    </noscript>
   </head>
   <body class="bg-[#02040a] text-slate-100 min-h-[100dvh] overflow-x-hidden font-sans">
     <div id="root"></div>
