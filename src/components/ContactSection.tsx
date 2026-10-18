@@ -375,14 +375,16 @@ ${fullName}`;
                   </div>
                 </div>
 
-                {/* Submit Action Button */}
+                {/* Submit Action Button (Button-in-Button Island Pattern) */}
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full group inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,240,255,0.35)] hover:shadow-[0_0_35px_rgba(0,240,255,0.5)] active:scale-[0.99] transition-all duration-300"
+                    className="w-full group btn-island-primary inline-flex items-center justify-center gap-3 pl-7 pr-2 py-2 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,240,255,0.35)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)]"
                   >
                     <span>Send {mode === 'demo' ? 'Demo Request' : mode === 'early-access' ? 'Early Access Application' : 'Inquiry'}</span>
-                    <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <div className="btn-icon-pod w-8 h-8 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300">
+                      <Send className="w-4 h-4 stroke-[2.2]" />
+                    </div>
                   </button>
                 </div>
               </form>

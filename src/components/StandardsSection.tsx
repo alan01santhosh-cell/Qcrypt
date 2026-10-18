@@ -36,58 +36,60 @@ export const StandardsSection: React.FC = () => {
         {/* 3 NIST Standards Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {NIST_STANDARDS_DATA.map((std) => (
-            <div key={std.standard} className="cyber-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
-                  <span className="font-mono text-sm font-bold text-cyan-400">
-                    {std.standard}
+            <div key={std.standard} className="cyber-card group">
+              <div className="cyber-card-inner p-6 sm:p-7 flex flex-col justify-between h-full">
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+                    <span className="font-mono text-sm font-bold text-cyan-400">
+                      {std.standard}
+                    </span>
+                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
+                      Finalized FIPS
+                    </span>
+                  </div>
+
+                  <div className="text-2xl font-black text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                    {std.algorithm}
+                  </div>
+                  <div className="text-xs text-slate-400 mb-5 leading-snug">
+                    {std.fullName}
+                  </div>
+
+                  <div className="space-y-3.5 text-xs">
+                    <div>
+                      <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
+                        Primary Function:
+                      </span>
+                      <span className="text-slate-200 font-medium">{std.primaryUse}</span>
+                    </div>
+
+                    <div>
+                      <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
+                        Legacy Algorithms Replaced:
+                      </span>
+                      <span className="text-rose-300 font-mono bg-rose-950/30 px-2 py-0.5 rounded border border-rose-500/20">
+                        {std.replaces}
+                      </span>
+                    </div>
+
+                    <div className="pt-3 border-t border-white/5">
+                      <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider block mb-1">
+                        How Qcrypt Aligns:
+                      </span>
+                      <p className="text-slate-300 text-xs leading-relaxed">
+                        {std.qcryptAlignment}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <span>Standardized Aug 2024</span>
+                  <span className="text-cyan-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Direct Mapping
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
-                    Finalized FIPS
-                  </span>
                 </div>
-
-                <div className="text-2xl font-black text-white mb-1">
-                  {std.algorithm}
-                </div>
-                <div className="text-xs text-slate-400 mb-5 leading-snug">
-                  {std.fullName}
-                </div>
-
-                <div className="space-y-3.5 text-xs">
-                  <div>
-                    <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
-                      Primary Function:
-                    </span>
-                    <span className="text-slate-200 font-medium">{std.primaryUse}</span>
-                  </div>
-
-                  <div>
-                    <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1">
-                      Legacy Algorithms Replaced:
-                    </span>
-                    <span className="text-rose-300 font-mono bg-rose-950/30 px-2 py-0.5 rounded border border-rose-500/20">
-                      {std.replaces}
-                    </span>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/5">
-                    <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider block mb-1">
-                      How Qcrypt Aligns:
-                    </span>
-                    <p className="text-slate-300 text-xs leading-relaxed">
-                      {std.qcryptAlignment}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>Standardized Aug 2024</span>
-                <span className="text-cyan-400 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  Direct Mapping
-                </span>
               </div>
             </div>
           ))}

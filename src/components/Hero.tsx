@@ -53,21 +53,21 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.08] mb-6">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.04] mb-6">
           Find Hidden Crypto Risks.{' '}
-          <span className="block mt-1 bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+          <span className="block mt-2 bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
             Prepare for the Quantum Era.
           </span>
         </h1>
 
         {/* Supporting Copy */}
-        <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
+        <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-9">
           Qcrypt helps technology companies discover quantum-vulnerable cryptography across their code and
           dependencies, prioritize remediation by risk, and plan a structured migration toward post-quantum security.
         </p>
 
         {/* Prominent Unique Value Proposition Banner */}
-        <div className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-3 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md max-w-3xl mx-auto mb-10 shadow-lg text-xs sm:text-sm text-slate-200">
+        <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3.5 rounded-2xl bg-white/[0.035] border border-white/10 backdrop-blur-md max-w-3xl mx-auto mb-12 shadow-xl text-xs sm:text-sm text-slate-200">
           <div className="flex items-center gap-2 text-cyan-400 font-medium">
             <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
             <span className="text-slate-400">Core Value:</span>
@@ -77,15 +77,15 @@ export const Hero: React.FC<HeroProps> = ({
           </span>
         </div>
 
-        {/* 3 Prominent Calls to Action */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-16">
-          {/* CTA 1: Request a Demo */}
+        {/* 3 Prominent Calls to Action (Nested Island Button Architecture) */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto mb-20">
+          {/* CTA 1: Request a Demo (Button-in-Button) */}
           <button
             onClick={onRequestDemo}
-            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] active:scale-[0.98] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+            className="w-full sm:w-auto group btn-island-primary relative inline-flex items-center justify-center gap-3 pl-7 pr-2 py-2 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_45px_rgba(0,240,255,0.6)]"
           >
             <span>Request a Demo</span>
-            <div className="w-7 h-7 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+            <div className="btn-icon-pod w-8 h-8 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300">
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </div>
           </button>
@@ -93,10 +93,10 @@ export const Hero: React.FC<HeroProps> = ({
           {/* CTA 2: Get Early Access */}
           <button
             onClick={onGetEarlyAccess}
-            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-white font-semibold text-sm border border-white/15 hover:border-cyan-400/50 backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+            className="w-full sm:w-auto group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold text-sm border border-white/15 hover:border-cyan-400/50 backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
           >
             <span>Get Early Access</span>
-            <span className="text-cyan-400 text-xs px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 font-mono">
+            <span className="text-cyan-400 text-xs px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 font-mono">
               Pilot
             </span>
           </button>
@@ -104,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* CTA 3: Explore the Platform */}
           <button
             onClick={onExplorePlatform}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-slate-300 hover:text-white font-medium text-sm transition-colors duration-200 hover:bg-white/5"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-slate-300 hover:text-white font-medium text-sm transition-all duration-300 hover:bg-white/[0.06] active:scale-[0.98]"
           >
             <span>Explore the Platform</span>
             <ArrowRight className="w-4 h-4 opacity-60" />

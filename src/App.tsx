@@ -33,7 +33,10 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white">
+    <div className="min-h-screen bg-[#02040a] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white relative">
+      {/* High-End Tactile Film-Grain Overlay */}
+      <div className="film-grain" aria-hidden="true" />
+
       {/* Floating Island Navigation */}
       <Navbar
         onOpenDemo={() => scrollToContact('demo')}
