@@ -28,8 +28,13 @@ export default {
         'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'scan-line': 'scan 3s linear infinite',
         'float-slow': 'float 6s ease-in-out infinite',
+        'marquee': 'marquee 32s linear infinite',
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         scan: {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(1000%)' },
