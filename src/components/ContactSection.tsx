@@ -118,7 +118,7 @@ ${fullName}`;
   };
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36 bg-[#030712] border-t border-white/[0.08]">
+    <section id="contact" className="relative py-28 sm:py-36 bg-[#030712]/75 backdrop-blur-[1px] border-t border-white/[0.08]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">

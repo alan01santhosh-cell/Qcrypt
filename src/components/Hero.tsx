@@ -11,7 +11,6 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { MOCK_TELEMETRY_FEED } from '../data/mockData';
-import { QuantumLatticeCanvas } from './QuantumLatticeCanvas';
 
 interface HeroProps {
   onRequestDemo: () => void;
@@ -77,10 +76,7 @@ tlsConfig := &tls.Config{
   const currentAlgo = algoDetails[selectedAlgoTab];
 
   return (
-    <section className="relative pt-32 sm:pt-40 pb-20 md:pb-36 overflow-hidden bg-[#02040a]">
-      {/* Interactive Quantum Lattice Simulation Canvas */}
-      <QuantumLatticeCanvas />
-
+    <section className="relative pt-32 sm:pt-40 pb-20 md:pb-36 overflow-hidden bg-transparent">
       {/* Cyber Grid & Ambient Radial Occlusion */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />

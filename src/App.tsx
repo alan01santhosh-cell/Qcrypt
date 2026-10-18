@@ -2,6 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { CryptoMarquee } from './components/CryptoMarquee';
+import { QuantumLatticeCanvas } from './components/QuantumLatticeCanvas';
 
 // Lazy-load below-the-fold components to accelerate initial First Contentful Paint (FCP) and LCP
 const ProblemSection = lazy(() =>
@@ -59,6 +60,9 @@ export function App() {
     <div className="min-h-[100dvh] bg-[#02040a] text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-white relative">
       {/* High-End Tactile Film-Grain Overlay */}
       <div className="film-grain" aria-hidden="true" />
+
+      {/* Global Interactive Quantum Lattice Canvas for the Whole Site */}
+      <QuantumLatticeCanvas />
 
       {/* Floating Island Navigation */}
       <Navbar

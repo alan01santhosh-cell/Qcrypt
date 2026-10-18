@@ -32,7 +32,7 @@ export const FaqSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-28 sm:py-36 bg-[#040814] border-t border-white/[0.08]">
+    <section id="faq" className="relative py-28 sm:py-36 bg-[#040814]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">

@@ -73,7 +73,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
   ];
 
   return (
-    <section id="customers" className="relative py-28 sm:py-36 bg-[#030712] border-t border-white/[0.08]">
+    <section id="customers" className="relative py-28 sm:py-36 bg-[#030712]/70 backdrop-blur-[1px] border-t border-white/[0.08]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">

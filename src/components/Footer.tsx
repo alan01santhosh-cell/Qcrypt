@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-[#02050d] border-t border-white/10 text-slate-400 text-xs font-sans">
+    <footer className="relative bg-[#02050d]/80 backdrop-blur-[1px] border-t border-white/10 text-slate-400 text-xs font-sans">
       {/* Upper Marketing Tagline Banner */}
       <div className="border-b border-white/5 py-12 px-4 sm:px-6 bg-gradient-to-b from-transparent to-[#040814]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">

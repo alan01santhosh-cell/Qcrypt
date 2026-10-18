@@ -55,9 +55,8 @@ export const QuantumLatticeCanvas: React.FC = () => {
 
     const initQuantumField = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
+      width = window.innerWidth;
+      height = window.innerHeight;
 
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -144,9 +143,8 @@ export const QuantumLatticeCanvas: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.targetX = e.clientX - rect.left;
-      mouse.targetY = e.clientY - rect.top;
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
       mouse.isHovering = true;
     };
 
@@ -158,9 +156,8 @@ export const QuantumLatticeCanvas: React.FC = () => {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.targetX = e.touches[0].clientX - rect.left;
-        mouse.targetY = e.touches[0].clientY - rect.top;
+        mouse.targetX = e.touches[0].clientX;
+        mouse.targetY = e.touches[0].clientY;
         mouse.isHovering = true;
       }
     };
@@ -364,7 +361,7 @@ export const QuantumLatticeCanvas: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-60 mix-blend-screen"
+      className="fixed inset-0 w-screen h-screen pointer-events-none z-0 opacity-70 mix-blend-screen"
       aria-hidden="true"
     />
   );
