@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nistBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#04091a"/>
+      <stop offset="100%" stop-color="#02040a"/>
+    </linearGradient>
+    <filter id="sealGlow">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#00f0ff" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="url(#nistBg)"/>
+
+  <!-- Three Columns for the 3 Finalized FIPS Standards -->
+  <!-- FIPS 203: ML-KEM -->
+  <g transform="translate(60, 40)">
+    <rect width="210" height="340" rx="20" fill="#060c1d" stroke="#00f0ff" stroke-width="1.5" filter="url(#sealGlow)"/>
+    <rect x="20" y="24" width="80" height="26" rx="6" fill="rgba(0, 240, 255, 0.15)"/>
+    <text x="60" y="41" fill="#00f0ff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">FIPS 203</text>
+    <text x="20" y="85" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800">ML-KEM</text>
+    <text x="20" y="105" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">(formerly Kyber)</text>
+    <line x1="20" y1="125" x2="190" y2="125" stroke="rgba(255,255,255,0.1)"/>
+    
+    <text x="20" y="155" fill="#00f0ff" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">FUNCTION:</text>
+    <text x="20" y="175" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Key Encapsulation</text>
+    
+    <text x="20" y="210" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">REPLACES:</text>
+    <text x="20" y="230" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">RSA-OAEP, ECDH</text>
+
+    <text x="20" y="265" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">HARDNESS:</text>
+    <text x="20" y="285" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Module-Lattice (M-LWE)</text>
+
+    <rect x="20" y="305" width="170" height="24" rx="6" fill="#052e16" stroke="#10b981" stroke-width="0.75"/>
+    <text x="105" y="321" fill="#4ade80" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">&bull; Finalized August 2024</text>
+  </g>
+
+  <!-- FIPS 204: ML-DSA -->
+  <g transform="translate(295, 40)">
+    <rect width="210" height="340" rx="20" fill="#060c1d" stroke="#3b82f6" stroke-width="1.5" filter="url(#sealGlow)"/>
+    <rect x="20" y="24" width="80" height="26" rx="6" fill="rgba(59, 130, 246, 0.15)"/>
+    <text x="60" y="41" fill="#3b82f6" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">FIPS 204</text>
+    <text x="20" y="85" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800">ML-DSA</text>
+    <text x="20" y="105" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">(formerly Dilithium)</text>
+    <line x1="20" y1="125" x2="190" y2="125" stroke="rgba(255,255,255,0.1)"/>
+
+    <text x="20" y="155" fill="#3b82f6" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">FUNCTION:</text>
+    <text x="20" y="175" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Digital Signatures</text>
+
+    <text x="20" y="210" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">REPLACES:</text>
+    <text x="20" y="230" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">RSA-PSS, ECDSA, Ed25519</text>
+
+    <text x="20" y="265" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">HARDNESS:</text>
+    <text x="20" y="285" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Module-Lattice (M-SIS)</text>
+
+    <rect x="20" y="305" width="170" height="24" rx="6" fill="#052e16" stroke="#10b981" stroke-width="0.75"/>
+    <text x="105" y="321" fill="#4ade80" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">&bull; Finalized August 2024</text>
+  </g>
+
+  <!-- FIPS 205: SLH-DSA -->
+  <g transform="translate(530, 40)">
+    <rect width="210" height="340" rx="20" fill="#060c1d" stroke="#6366f1" stroke-width="1.5" filter="url(#sealGlow)"/>
+    <rect x="20" y="24" width="80" height="26" rx="6" fill="rgba(99, 102, 241, 0.15)"/>
+    <text x="60" y="41" fill="#818cf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">FIPS 205</text>
+    <text x="20" y="85" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800">SLH-DSA</text>
+    <text x="20" y="105" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">(formerly SPHINCS+)</text>
+    <line x1="20" y1="125" x2="190" y2="125" stroke="rgba(255,255,255,0.1)"/>
+
+    <text x="20" y="155" fill="#818cf8" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">FUNCTION:</text>
+    <text x="20" y="175" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Stateless Hash Signatures</text>
+
+    <text x="20" y="210" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">REPLACES:</text>
+    <text x="20" y="230" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Lattice Backup / Fallback</text>
+
+    <text x="20" y="265" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">HARDNESS:</text>
+    <text x="20" y="285" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Hash Function Security</text>
+
+    <rect x="20" y="305" width="170" height="24" rx="6" fill="#052e16" stroke="#10b981" stroke-width="0.75"/>
+    <text x="105" y="321" fill="#4ade80" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">&bull; Finalized August 2024</text>
+  </g>
+</svg>
