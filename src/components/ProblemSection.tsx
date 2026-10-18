@@ -47,11 +47,11 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
 
               {/* Visual Artifact Mockup */}
               <div className="p-4 rounded-xl bg-black/40 border border-white/10 font-mono text-xs text-slate-300">
-                <div className="flex items-center justify-between text-slate-400 pb-2 border-b border-white/5 mb-2">
-                  <span>transitive_lockfile_trace.json</span>
-                  <span className="text-rose-400 font-semibold">Hidden Vulnerability</span>
+                <div className="flex flex-wrap items-center justify-between text-slate-400 pb-2 border-b border-white/5 mb-2 gap-1.5">
+                  <span className="truncate">transitive_lockfile_trace.json</span>
+                  <span className="text-rose-400 font-semibold shrink-0">Hidden Vulnerability</span>
                 </div>
-                <div className="text-slate-400">
+                <div className="text-slate-400 break-words">
                   <span className="text-purple-400">auth-service</span> &rarr; jwt-engine v2.1 &rarr;{' '}
                   <span className="text-rose-400 font-bold">crypto/rsa-2048</span> (Deprecated)
                 </div>
@@ -77,7 +77,7 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between text-xs font-mono tabular-nums">
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono tabular-nums">
                 <span className="text-slate-400">CBOM Coverage:</span>
                 <span className="text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
                   0% Automated Today
@@ -103,7 +103,7 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
                 </p>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <span className="text-xs px-2.5 py-1 rounded-md bg-rose-950/50 text-rose-300 border border-rose-500/30 font-mono">
                   Shor's Vulnerable: High
                 </span>
@@ -136,8 +136,8 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-mono text-cyan-400">Mosca's Theorem: If D + M &gt; Q, you are already vulnerable</span>
+              <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs font-mono text-cyan-400 text-pretty">Mosca's Theorem: If D + M &gt; Q, you are already vulnerable</span>
                 <button
                   onClick={onLearnMore}
                   className="text-xs text-slate-300 hover:text-white font-medium flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-lg px-2 py-1"

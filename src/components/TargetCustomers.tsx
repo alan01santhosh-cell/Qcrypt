@@ -133,7 +133,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
                   <div className="mt-6 pt-4 border-t border-white/5">
                     <button
                       onClick={() => onSelectAudience(aud.title)}
-                      className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 group/btn rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                      className="min-h-[44px] py-2 px-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 group/btn rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                     >
                       <span>Request tailored walkthrough</span>
                       <ArrowRight className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />

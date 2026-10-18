@@ -181,11 +181,11 @@ export const DashboardPreview: React.FC = () => {
               </div>
 
               {/* Category & Risk Filter Pills */}
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-400"
+                  className="w-full sm:w-auto px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-400"
                 >
                   <option value="All">All Categories</option>
                   <option value="Key Exchange">Key Exchange</option>
@@ -195,29 +195,35 @@ export const DashboardPreview: React.FC = () => {
                   <option value="Hashing">Hashing</option>
                 </select>
 
-                <span className="text-xs font-mono text-slate-400 ml-1 mr-1 flex items-center gap-1">
-                  <Filter className="w-3.5 h-3.5" />
-                  Risk:
-                </span>
-                {['All', 'Vulnerable', 'Critical', 'Quantum-Ready'].map((risk) => (
-                  <button
-                    key={risk}
-                    onClick={() => setSelectedRisk(risk)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
-                      selectedRisk === risk
-                        ? 'bg-cyan-500 text-slate-950 font-bold'
-                        : 'bg-white/5 hover:bg-white/10 text-slate-300'
-                    }`}
-                  >
-                    {risk}
-                  </button>
-                ))}
+                <div className="flex flex-wrap items-center gap-2 mt-1 sm:mt-0">
+                  <span className="text-xs font-mono text-slate-400 ml-1 mr-1 flex items-center gap-1">
+                    <Filter className="size-3.5" />
+                    Risk:
+                  </span>
+                  {['All', 'Vulnerable', 'Critical', 'Quantum-Ready'].map((risk) => (
+                    <button
+                      key={risk}
+                      onClick={() => setSelectedRisk(risk)}
+                      className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
+                        selectedRisk === risk
+                          ? 'bg-cyan-500 text-slate-950 font-bold'
+                          : 'bg-white/5 hover:bg-white/10 text-slate-300'
+                      }`}
+                    >
+                      {risk}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* CBOM Inventory Table */}
-            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#030611]">
-              <table className="w-full text-left text-xs font-mono">
+            {/* CBOM Inventory Table with Mobile Swipe Protection */}
+            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#030611] relative">
+              <div className="md:hidden text-[10px] font-mono text-cyan-400/90 px-4 py-2 bg-cyan-950/40 border-b border-white/5 flex items-center justify-between">
+                <span>&larr; Swipe horizontally to view full CBOM fields &rarr;</span>
+                <span className="text-slate-400">6 columns</span>
+              </div>
+              <table className="w-full text-left text-xs font-mono min-w-[700px]">
                 <thead>
                   <tr className="border-b border-white/10 bg-white/[0.02] text-slate-400 text-[11px] uppercase tracking-wider">
                     <th className="py-3.5 px-4 font-semibold">Asset ID &amp; Target</th>
@@ -362,26 +368,26 @@ export const DashboardPreview: React.FC = () => {
             </div>
 
             {/* Dashboard Footer Action Bar */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
                 <span>Showing {filteredItems.length} of {MOCK_CBOM_ITEMS.length} demo assets</span>
                 <span>&bull;</span>
                 <span className="text-cyan-400">CycloneDX 1.6 Compliant</span>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <button
                   onClick={() => setIsExportModalOpen(true)}
-                  className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold flex items-center gap-2 border border-white/10 transition-colors"
+                  className="w-full sm:w-auto justify-center px-4 py-2.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-semibold flex items-center gap-2 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 >
-                  <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                  <FileText className="size-3.5 text-cyan-400" />
                   View Audit Report Summary
                 </button>
                 <button
                   onClick={handleDownloadCbom}
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all"
+                  className="w-full sm:w-auto justify-center px-4 py-2.5 sm:py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="size-3.5" />
                   Download CycloneDX CBOM (.json)
                 </button>
               </div>
@@ -391,8 +397,8 @@ export const DashboardPreview: React.FC = () => {
 
         {/* Audit Report Summary Modal */}
         {isExportModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-            <div className="relative max-w-2xl w-full rounded-3xl bg-[#060b17] border border-white/20 p-6 sm:p-8 shadow-2xl text-left">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+            <div className="relative max-w-2xl w-full my-auto max-h-[90vh] overflow-y-auto rounded-3xl bg-[#060b17] border border-white/20 p-5 sm:p-8 shadow-2xl text-left">
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
                 <div>
                   <h3 className="text-xl font-bold text-white flex items-center gap-2">

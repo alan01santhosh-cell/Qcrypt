@@ -25,10 +25,10 @@ export const StandardsSection: React.FC = () => {
               href="https://csrc.nist.gov/projects/post-quantum-cryptography"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+              className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 text-pretty"
             >
               <span>Visit Official NIST Post-Quantum Cryptography Portal</span>
-              <ExternalLink className="size-3.5" />
+              <ExternalLink className="size-3.5 shrink-0" />
             </a>
           </div>
         </div>

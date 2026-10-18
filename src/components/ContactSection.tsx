@@ -148,7 +148,7 @@ ${fullName}`;
                 setMode(tab.id as any);
                 setSubmittedData(null);
               }}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+              className={`px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                 mode === tab.id
                   ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_20px_rgba(0,240,255,0.3)]'
                   : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
@@ -234,7 +234,7 @@ ${fullName}`;
                         setFullName(e.target.value);
                         if (errors.fullName) setErrors({ ...errors, fullName: '' });
                       }}
-                      className={`w-full px-4 py-2.5 rounded-xl bg-black/40 border text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                      className={`w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                         errors.fullName ? 'border-rose-500' : 'border-white/10 focus:border-cyan-400'
                       }`}
                     />
@@ -263,7 +263,7 @@ ${fullName}`;
                         setEmail(e.target.value);
                         if (errors.email) setErrors({ ...errors, email: '' });
                       }}
-                      className={`w-full px-4 py-2.5 rounded-xl bg-black/40 border text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                      className={`w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                         errors.email ? 'border-rose-500' : 'border-white/10 focus:border-cyan-400'
                       }`}
                     />
@@ -292,7 +292,7 @@ ${fullName}`;
                         setCompany(e.target.value);
                         if (errors.company) setErrors({ ...errors, company: '' });
                       }}
-                      className={`w-full px-4 py-2.5 rounded-xl bg-black/40 border text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                      className={`w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                         errors.company ? 'border-rose-500' : 'border-white/10 focus:border-cyan-400'
                       }`}
                     />
@@ -321,7 +321,7 @@ ${fullName}`;
                         setJobTitle(e.target.value);
                         if (errors.jobTitle) setErrors({ ...errors, jobTitle: '' });
                       }}
-                      className={`w-full px-4 py-2.5 rounded-xl bg-black/40 border text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                      className={`w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                         errors.jobTitle ? 'border-rose-500' : 'border-white/10 focus:border-cyan-400'
                       }`}
                     />
@@ -343,7 +343,7 @@ ${fullName}`;
                     name="interest"
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400"
+                    className="w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border border-white/10 text-base sm:text-sm text-white focus:outline-none focus:border-cyan-400 transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400"
                   >
                     <option value="Source Code Discovery & CBOM" className="bg-[#050814]">
                       Source Code Cryptographic Discovery &amp; CBOM Generation
@@ -380,7 +380,7 @@ ${fullName}`;
                       setMessage(e.target.value);
                       if (errors.message) setErrors({ ...errors, message: '' });
                     }}
-                    className={`w-full px-4 py-2.5 rounded-xl bg-black/40 border text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
+                    className={`w-full px-4 py-3 sm:py-2.5 rounded-xl bg-black/40 border text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-colors focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                       errors.message ? 'border-rose-500' : 'border-white/10 focus:border-cyan-400'
                     }`}
                   />
@@ -405,7 +405,7 @@ ${fullName}`;
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full group btn-island-primary inline-flex items-center justify-center gap-3 pl-7 pr-2 py-2 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,240,255,0.35)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                    className="w-full group btn-island-primary inline-flex items-center justify-center gap-3 pl-7 pr-2 py-3 sm:py-2 min-h-[48px] rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-sky-400 text-slate-950 font-bold text-sm tracking-wide shadow-[0_0_25px_rgba(0,240,255,0.35)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                   >
                     <span>Send {mode === 'demo' ? 'Demo Request' : mode === 'early-access' ? 'Early Access Application' : 'Inquiry'}</span>
                     <div className="btn-icon-pod size-8 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center transition-transform duration-300">

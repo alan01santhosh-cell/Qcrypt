@@ -88,12 +88,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenEarlyAccess })
           </button>
         </div>
 
-        {/* Mobile Hamburger Morph (Section 5.A: Two fluid lines rotating into an X) */}
+        {/* Mobile Hamburger Morph (Section 5.A: Two fluid lines rotating into an X with 44px touch target) */}
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
-            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-1.5 text-slate-300 hover:text-white focus:outline-none transition-colors"
+            className="size-11 rounded-full bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-1.5 text-slate-300 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 transition-colors"
           >
             <span
               className={`w-4 h-0.5 bg-current rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
@@ -109,11 +109,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenEarlyAccess })
         </div>
       </nav>
 
-      {/* Screen-Filling Modal Expansion (Section 5.A: Heavy glass overlay + staggered mask reveal) */}
+      {/* Screen-Filling Modal Expansion (Section 5.A: Heavy glass overlay + staggered mask reveal, scroll-safe) */}
       {mobileMenuOpen && (
-        <div className="pointer-events-auto sm:hidden fixed inset-0 z-40 bg-black/90 backdrop-blur-3xl p-6 pt-28 flex flex-col justify-between animate-in fade-in duration-300">
-          <div className="space-y-2">
-            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-400 mb-4 px-3">
+        <div className="pointer-events-auto sm:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-3xl p-6 pt-24 pb-8 flex flex-col justify-between overflow-y-auto overscroll-contain animate-in fade-in duration-300">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-400 mb-3 px-3">
               Navigation Index
             </div>
             {navLinks.map((item, idx) => (
@@ -121,21 +121,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenEarlyAccess })
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                style={{ animationDelay: `${idx * 50}ms` }}
-                className="block px-4 py-3 text-lg font-bold text-slate-100 hover:text-cyan-400 hover:bg-white/5 rounded-2xl transition-all duration-300"
+                style={{ animationDelay: `${idx * 40}ms` }}
+                className="block px-4 py-2.5 text-base font-bold text-slate-100 hover:text-cyan-400 hover:bg-white/5 rounded-xl transition-all duration-300"
               >
                 {item.label}
               </a>
             ))}
           </div>
 
-          <div className="space-y-3 pt-6 border-t border-white/10">
+          <div className="space-y-3 pt-4 border-t border-white/10 mt-6">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenEarlyAccess();
               }}
-              className="w-full py-3.5 text-sm font-semibold text-slate-200 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 transition-colors"
+              className="w-full py-3 text-sm font-semibold text-slate-200 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
             >
               Get Early Access
             </button>

@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
 
           <button
             onClick={scrollToTop}
-            className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+            className="group inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
           >
             <span>Back to Top</span>
             <ArrowUp className="size-3.5 transition-transform group-hover:-translate-y-0.5 text-cyan-400" />
@@ -58,10 +58,10 @@ export const Footer: React.FC = () => {
               standardized CBOM inventories, risk-weighted triage, and NIST-aligned transition roadmaps.
             </p>
 
-            <div className="pt-2 flex items-center gap-3 text-slate-400">
+            <div className="pt-2 flex items-center gap-2 text-slate-400">
               <a
                 href="mailto:contact@qcrypt.security"
-                className="hover:text-cyan-400 transition-colors p-1 rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                className="size-11 flex items-center justify-center hover:text-cyan-400 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 aria-label="Send email to Qcrypt team"
                 title="Email Us"
               >
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-cyan-400 transition-colors p-1 rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                className="size-11 flex items-center justify-center hover:text-cyan-400 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 aria-label="Qcrypt on GitHub"
                 title="GitHub"
               >
@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-cyan-400 transition-colors p-1 rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                className="size-11 flex items-center justify-center hover:text-cyan-400 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 aria-label="Qcrypt on LinkedIn"
                 title="LinkedIn"
               >

@@ -121,8 +121,12 @@ export const WhyQcrypt: React.FC = () => {
               Designed specifically for post-quantum cryptographic intelligence, not generic vulnerability noise.
             </p>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
+            <div className="overflow-x-auto relative rounded-xl">
+              <div className="sm:hidden text-[10px] font-mono text-cyan-400/90 px-3 py-1.5 bg-cyan-950/40 border border-white/5 rounded-t-xl flex items-center justify-between">
+                <span>&larr; Swipe to compare capabilities &rarr;</span>
+                <span className="text-slate-400">4 columns</span>
+              </div>
+              <table className="w-full text-left text-xs sm:text-sm min-w-[580px]">
                 <thead>
                   <tr className="border-b border-white/10 text-slate-400 font-mono text-[11px] uppercase tracking-wider">
                     <th className="py-3 px-3">Cryptographic Dimension</th>

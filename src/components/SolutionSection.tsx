@@ -182,7 +182,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
 
                 {/* Dynamic Visual representation for each step */}
                 {activeStep === 0 && (
-                  <div className="space-y-3 font-mono text-xs">
+                  <div className="space-y-3 font-mono text-xs overflow-x-auto">
                     <div className="text-slate-400">Scanning repository AST...</div>
                     <div className="p-3 rounded-xl bg-black/60 border border-cyan-500/30 text-cyan-300">
                       <code>&gt; match: crypto.GenerateKey(rsa.2048)</code>
@@ -196,7 +196,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
                 )}
 
                 {activeStep === 1 && (
-                  <div className="space-y-3 font-mono text-xs">
+                  <div className="space-y-3 font-mono text-xs overflow-x-auto">
                     <div className="text-slate-400">Synthesizing CycloneDX 1.6 CBOM...</div>
                     <div className="p-3 rounded-xl bg-black/60 border border-white/10 text-slate-300 space-y-1">
                       <div className="text-cyan-400 font-bold">&#123; "bomFormat": "CycloneDX", "specVersion": "1.6",</div>
@@ -211,7 +211,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
                 {activeStep === 2 && (
                   <div className="space-y-3 font-mono text-xs">
                     <div className="text-slate-400">Risk Weighted Matrix Calculation...</div>
-                    <div className="grid grid-cols-2 gap-2 text-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-center">
                       <div className="p-2.5 rounded-lg bg-rose-950/40 border border-rose-500/30">
                         <div className="text-rose-400 font-bold text-sm">Critical (Score 9.4)</div>
                         <div className="text-[10px] text-slate-400 mt-0.5">TLS Public + RSA-2048</div>
@@ -229,7 +229,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
                 )}
 
                 {activeStep === 3 && (
-                  <div className="space-y-3 font-mono text-xs">
+                  <div className="space-y-3 font-mono text-xs overflow-x-auto">
                     <div className="text-slate-400">NIST FIPS Recommended Transition:</div>
                     <div className="p-3 rounded-xl bg-black/60 border border-cyan-400/40 text-cyan-300">
                       <div className="font-bold text-white flex items-center gap-1.5">
@@ -247,7 +247,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
                   <span className="text-[11px] text-slate-400">Interactive Preview</span>
                   <button
                     onClick={onOpenDashboard}
-                    className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5"
+                    className="min-h-[44px] px-2 py-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-lg"
                   >
                     Open Live Dashboard &rarr;
                   </button>

@@ -53,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.04] mb-6 text-balance">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.08] sm:leading-[1.04] mb-6 text-balance">
           Find Hidden Crypto Risks.{' '}
           <span className="block mt-2 bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
             Prepare for the Quantum Era.
@@ -164,12 +164,12 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Left Column: Live Scanning Console */}
               <div className="lg:col-span-7 bg-[#040813] border border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-3 mb-3 border-b border-white/10">
-                    <span className="text-cyan-400 flex items-center gap-1.5">
-                      <Cpu className="size-3.5" />
-                      Repository AST & Dependency Inspector
+                  <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 pb-3 mb-3 border-b border-white/10 gap-2">
+                    <span className="text-cyan-400 flex items-center gap-1.5 truncate">
+                      <Cpu className="size-3.5 shrink-0" />
+                      Repository AST &amp; Dependency Inspector
                     </span>
-                    <span className="text-emerald-400 tabular-nums">active scan 18.2k SLOC</span>
+                    <span className="text-emerald-400 tabular-nums shrink-0">active scan 18.2k SLOC</span>
                   </div>
 
                   {/* Scanning Log Stream */}
@@ -181,16 +181,16 @@ export const Hero: React.FC<HeroProps> = ({
                           key={idx}
                           className={`p-2.5 rounded-xl border transition-all duration-300 ${
                             isCurrent
-                              ? 'bg-cyan-950/30 border-cyan-500/50 shadow-[0_0_15px_rgba(0,240,255,0.15)] translate-x-1'
+                              ? 'bg-cyan-950/30 border-cyan-500/50 shadow-[0_0_15px_rgba(0,240,255,0.15)] translate-x-0.5 sm:translate-x-1'
                               : 'bg-white/[0.02] border-white/5 opacity-70'
                           }`}
                         >
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="text-slate-400 text-[11px] tabular-nums">{item.time}</span>
-                            <span className="text-cyan-300 font-semibold">{item.service}</span>
-                            <span className="text-slate-300 truncate max-w-[150px]">{item.target}</span>
+                          <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-1.5 sm:gap-2">
+                            <span className="text-slate-400 text-[10px] sm:text-[11px] tabular-nums shrink-0">{item.time}</span>
+                            <span className="text-cyan-300 font-semibold text-xs shrink-0">{item.service}</span>
+                            <span className="text-slate-300 truncate max-w-[130px] sm:max-w-[170px] text-[11px] sm:text-xs">{item.target}</span>
                             <span
-                              className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider ${
+                              className={`shrink-0 px-2 py-0.5 rounded text-[9px] sm:text-[10px] uppercase font-bold tracking-wider ${
                                 item.status === 'Vulnerable'
                                   ? 'bg-rose-950/80 text-rose-300 border border-rose-500/40'
                                   : item.status === 'HNDL Risk'
@@ -201,7 +201,7 @@ export const Hero: React.FC<HeroProps> = ({
                               {item.status}
                             </span>
                           </div>
-                          <div className="text-[11px] text-slate-300 mt-1 pl-1">
+                          <div className="text-[11px] text-slate-300 mt-1 pl-1 break-words">
                             &rarr; {item.finding}
                           </div>
                         </div>
@@ -210,7 +210,7 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
+                <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 font-mono">
                   <span>Target: AWS EKS prod-us-east-1</span>
                   <span className="text-cyan-400">CBOM CycloneDX v1.6 ready</span>
                 </div>
