@@ -14,10 +14,10 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
             <AlertOctagon className="w-3.5 h-3.5" />
             The Cryptographic Blindspot
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Your Cryptography May Be Harder to See Than You Think.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             Preparing for quantum threats is a <strong className="text-white">present-day planning challenge</strong>,
             not science fiction. While a cryptographically relevant quantum computer (CRQC) does not exist today, the
             operational reality of <span className="text-cyan-300 font-semibold">"Harvest Now, Decrypt Later" (HNDL)</span> and
@@ -31,13 +31,13 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
           <div className="md:col-span-7 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-105 transition-transform">
-                  <EyeOff className="w-6 h-6 stroke-[1.75]" />
+                <div className="size-12 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-105 transition-transform">
+                  <EyeOff className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3 text-balance">
                   Hidden Crypto in Code &amp; Deep Dependencies
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
                   Over 70% of cryptographic calls don’t live in your primary service code—they hide inside third-party
                   libraries, transitive package dependencies, deprecated SDKs, embedded firmware, and hardcoded TLS configurations.
                   Standard static application security testing (SAST) tools flag generic bugs, but fail to identify cryptographic
@@ -63,13 +63,13 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
           <div className="md:col-span-5 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-blue-950/60 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 transition-transform">
-                  <Database className="w-6 h-6 stroke-[1.75]" />
+                <div className="size-12 rounded-2xl bg-blue-950/60 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 transition-transform">
+                  <Database className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3 text-balance">
                   Absence of a Centralized Cryptographic Inventory
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
                   Most organizations have Software Bills of Materials (SBOM), but zero centralized visibility into their
                   <strong className="text-white"> Cryptographic Bill of Materials (CBOM)</strong>. Without an automated inventory,
                   security leaders cannot answer simple compliance or audit questions: which algorithms are running, where keys are
@@ -77,7 +77,7 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between text-xs font-mono">
+              <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between text-xs font-mono tabular-nums">
                 <span className="text-slate-400">CBOM Coverage:</span>
                 <span className="text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
                   0% Automated Today
@@ -90,13 +90,13 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
           <div className="md:col-span-5 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-105 transition-transform">
-                  <ShieldAlert className="w-6 h-6 stroke-[1.75]" />
+                <div className="size-12 rounded-2xl bg-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-105 transition-transform">
+                  <ShieldAlert className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3 text-balance">
                   Finding Paralysis vs. Actionable Risk
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                <p className="text-sm text-slate-300 leading-relaxed mb-6 text-pretty">
                   A blind grep reveals thousands of cryptographic references across enterprise repositories. Engineering
                   teams cannot and should not attempt to rewrite everything simultaneously. Security architects need
                   risk-weighted scoring that considers algorithm weakness, data exposure, and external network reachability.
@@ -118,18 +118,18 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
           <div className="md:col-span-7 double-bezel group">
             <div className="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-purple-950/60 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-105 transition-transform">
-                  <Clock className="w-6 h-6 stroke-[1.75]" />
+                <div className="size-12 rounded-2xl bg-purple-950/60 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-105 transition-transform">
+                  <Clock className="size-6 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3 text-balance">
                   Long-Lived Data &amp; Multi-Year Migration Complexity
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-4">
+                <p className="text-sm text-slate-300 leading-relaxed mb-4 text-pretty">
                   Financial transactions, confidential medical data, trade secrets, and government communications must
                   remain secure for <strong className="text-white">10 to 30 years</strong>. Adversaries can capture encrypted
                   traffic today and store it until decryption becomes viable.
                 </p>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-400 leading-relaxed text-pretty">
                   Migrating an enterprise infrastructure from RSA and elliptic curves to post-quantum algorithms like ML-KEM
                   and ML-DSA will take an estimated 3 to 7 years across protocols, hardware, and client applications. Early
                   planning is the only defence against costly emergency refactors.
@@ -140,7 +140,7 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({ onLearnMore }) =
                 <span className="text-xs font-mono text-cyan-400">Mosca's Theorem: If D + M &gt; Q, you are already vulnerable</span>
                 <button
                   onClick={onLearnMore}
-                  className="text-xs text-slate-300 hover:text-white font-medium flex items-center gap-1.5 transition-colors"
+                  className="text-xs text-slate-300 hover:text-white font-medium flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 rounded-lg px-2 py-1"
                 >
                   Explore Solution &rarr;
                 </button>

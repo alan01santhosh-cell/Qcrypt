@@ -79,10 +79,10 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
             <Sparkles className="w-3.5 h-3.5" />
             The Qcrypt Engine
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             From Hidden Cryptography to an Actionable Migration Plan.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             Qcrypt replaces fragmented manual crypto audits with a continuous, 4-step intelligence pipeline.
             We turn opaque lines of code into a prioritized, standards-aligned roadmap your engineering teams can
             confidently execute.
@@ -98,22 +98,22 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
               <button
                 key={s.step}
                 onClick={() => setActiveStep(idx)}
-                className={`p-4 rounded-2xl border text-left transition-all duration-300 relative group ${
+                className={`p-4 rounded-2xl border text-left transition-all duration-300 relative group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 ${
                   isSelected
                     ? 'bg-[#091124] border-cyan-400/60 shadow-[0_0_25px_rgba(0,240,255,0.15)] ring-1 ring-cyan-400/40'
                     : 'bg-[#060a15] border-white/10 hover:border-white/20 hover:bg-white/[0.03]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`font-mono text-xs font-bold ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`}>
+                  <span className={`font-mono text-xs font-bold tabular-nums ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`}>
                     STEP {s.step}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                    className={`size-7 rounded-lg flex items-center justify-center transition-colors ${
                       isSelected ? 'bg-cyan-400 text-slate-950' : 'bg-white/5 text-slate-400 group-hover:text-white'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="size-4" />
                   </div>
                 </div>
                 <div className={`text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-300'}`}>
@@ -131,8 +131,8 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
               {/* Left Column: Explanatory Content */}
               <div className="lg:col-span-7 space-y-6">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-sm text-cyan-400 font-bold px-3 py-1 rounded-md bg-cyan-950/60 border border-cyan-500/30 flex items-center gap-2">
-                    <StepIcon className="w-4 h-4" />
+                  <span className="font-mono text-sm text-cyan-400 font-bold px-3 py-1 rounded-md bg-cyan-950/60 border border-cyan-500/30 flex items-center gap-2 tabular-nums">
+                    <StepIcon className="size-4" />
                     Step {current.step}
                   </span>
                   <span className={`text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full border ${current.badgeColor}`}>
@@ -140,21 +140,21 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ onOpenDashboar
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white text-balance">
                   {current.title}
                 </h3>
 
-                <p className="text-base text-slate-300 leading-relaxed">
+                <p className="text-base text-slate-300 leading-relaxed text-pretty">
                   {current.description}
                 </p>
 
                 {/* Plain-Language Business Benefit Box */}
                 <div className="p-4 sm:p-5 rounded-2xl bg-cyan-950/20 border border-cyan-500/25">
                   <div className="text-xs font-mono uppercase text-cyan-300 tracking-wider font-semibold mb-2 flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                    <Sparkles className="size-3.5 text-cyan-400" />
                     Direct Business Benefit
                   </div>
-                  <p className="text-sm text-slate-200 leading-relaxed font-medium">
+                  <p className="text-sm text-slate-200 leading-relaxed font-medium text-pretty">
                     {current.businessBenefit}
                   </p>
                 </div>

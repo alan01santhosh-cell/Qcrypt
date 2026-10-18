@@ -53,7 +53,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.04] mb-6">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.04] mb-6 text-balance">
           Find Hidden Crypto Risks.{' '}
           <span className="block mt-2 bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
             Prepare for the Quantum Era.
@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({
         </h1>
 
         {/* Supporting Copy */}
-        <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-9">
+        <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-9 text-pretty">
           Qcrypt helps technology companies discover quantum-vulnerable cryptography across their code and
           dependencies, prioritize remediation by risk, and plan a structured migration toward post-quantum security.
         </p>
@@ -121,36 +121,37 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-rose-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-amber-500/80" />
-                  <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                  <span className="size-3 rounded-full bg-rose-500/80" />
+                  <span className="size-3 rounded-full bg-amber-500/80" />
+                  <span className="size-3 rounded-full bg-emerald-500/80" />
                 </div>
                 <div className="h-4 w-px bg-white/15 mx-1" />
                 <span className="font-mono text-xs text-slate-400 flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+                  <Terminal className="size-3.5 text-cyan-400" />
                   <span>qcrypt-agent &bull; live inspection</span>
                 </span>
               </div>
 
               {/* Status and Demo Data Badge */}
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-950/60 border border-amber-500/30 text-amber-300 font-mono text-[11px]">
-                  <Activity className="w-3 h-3 animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-950/60 border border-amber-500/30 text-amber-300 font-mono text-[11px] tabular-nums">
+                  <Activity className="size-3 animate-pulse motion-reduce:animate-none" />
                   Demo Data &bull; Simulated Engine
                 </span>
                 <button
                   onClick={() => setIsScanning(!isScanning)}
-                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors"
+                  aria-label="Toggle scan simulation"
+                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                   title="Toggle scan simulation"
                 >
                   {isScanning ? (
                     <>
-                      <RotateCcw className="w-3 h-3 text-cyan-400 animate-spin" />
+                      <RotateCcw className="size-3 text-cyan-400 animate-spin motion-reduce:animate-none" />
                       <span>Scanning</span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-3 h-3 text-cyan-400" />
+                      <Play className="size-3 text-cyan-400" />
                       <span>Resume</span>
                     </>
                   )}
@@ -165,10 +166,10 @@ export const Hero: React.FC<HeroProps> = ({
                 <div>
                   <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-3 mb-3 border-b border-white/10">
                     <span className="text-cyan-400 flex items-center gap-1.5">
-                      <Cpu className="w-3.5 h-3.5" />
+                      <Cpu className="size-3.5" />
                       Repository AST & Dependency Inspector
                     </span>
-                    <span className="text-emerald-400">active scan 18.2k SLOC</span>
+                    <span className="text-emerald-400 tabular-nums">active scan 18.2k SLOC</span>
                   </div>
 
                   {/* Scanning Log Stream */}
@@ -185,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
-                            <span className="text-slate-400 text-[11px]">{item.time}</span>
+                            <span className="text-slate-400 text-[11px] tabular-nums">{item.time}</span>
                             <span className="text-cyan-300 font-semibold">{item.service}</span>
                             <span className="text-slate-300 truncate max-w-[150px]">{item.target}</span>
                             <span
@@ -220,18 +221,18 @@ export const Hero: React.FC<HeroProps> = ({
                 {/* Metric Summary Card */}
                 <div className="bg-[#040813] border border-white/10 rounded-2xl p-4 sm:p-5">
                   <div className="text-xs font-mono uppercase text-slate-400 tracking-wider mb-3 flex items-center gap-1.5">
-                    <ShieldAlert className="w-3.5 h-3.5 text-cyan-400" />
+                    <ShieldAlert className="size-3.5 text-cyan-400" />
                     Quantum Risk Profile
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 mb-4">
                     <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-500/30">
-                      <div className="text-2xl font-black text-rose-400">418</div>
+                      <div className="text-2xl font-black text-rose-400 tabular-nums">418</div>
                       <div className="text-[11px] text-slate-300 font-medium">Asymmetric Crypto Assets</div>
                       <div className="text-[10px] text-rose-400 font-mono mt-0.5">Shor's Vulnerable</div>
                     </div>
                     <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
-                      <div className="text-2xl font-black text-emerald-400">1,064</div>
+                      <div className="text-2xl font-black text-emerald-400 tabular-nums">1,064</div>
                       <div className="text-[11px] text-slate-300 font-medium">Symmetric & Hash Assets</div>
                       <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Quantum Resistant</div>
                     </div>
@@ -241,7 +242,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <div className="space-y-1.5">
                     <div className="flex justify-between text-xs font-mono">
                       <span className="text-slate-400">Migration Agility Readiness</span>
-                      <span className="text-cyan-400 font-semibold">28% Ready</span>
+                      <span className="text-cyan-400 font-semibold tabular-nums">28% Ready</span>
                     </div>
                     <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden flex">
                       <div className="h-full bg-emerald-500" style={{ width: '28%' }} title="Post-Quantum Ready" />

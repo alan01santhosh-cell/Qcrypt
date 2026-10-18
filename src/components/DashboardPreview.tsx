@@ -91,13 +91,13 @@ export const DashboardPreview: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-              <Cpu className="w-3.5 h-3.5" />
+              <Cpu className="size-3.5" />
               Interactive Product Console
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
               Product Dashboard Preview
             </h2>
-            <p className="text-base text-slate-300 leading-relaxed">
+            <p className="text-base text-slate-300 leading-relaxed text-pretty">
               Explore how security and engineering teams investigate cryptographic findings, track dependency risk,
               and manage NIST-aligned migration roadmaps.
             </p>
@@ -106,14 +106,14 @@ export const DashboardPreview: React.FC = () => {
           {/* Sample Data & Disclaimer Notice */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <div className="px-4 py-2 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs font-mono flex items-center gap-2">
-              <Info className="w-4 h-4 shrink-0 text-amber-400" />
+              <Info className="size-4 shrink-0 text-amber-400" />
               <span>Simulated Demo Data &bull; Real scanning engine in private pilot</span>
             </div>
             <button
               onClick={handleDownloadCbom}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs font-semibold font-mono transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
             >
-              <Download className="w-4 h-4" />
+              <Download className="size-4" />
               Export CBOM (.json)
             </button>
           </div>
@@ -122,8 +122,8 @@ export const DashboardPreview: React.FC = () => {
         {exportNotice && (
           <div className="mb-6 p-3 rounded-xl bg-cyan-950/70 border border-cyan-400/50 text-cyan-200 text-xs font-mono flex items-center justify-between">
             <span>&check; {exportNotice}</span>
-            <button onClick={() => setExportNotice(null)} className="text-cyan-400 hover:text-white">
-              <X className="w-4 h-4" />
+            <button onClick={() => setExportNotice(null)} aria-label="Dismiss notice" className="text-cyan-400 hover:text-white">
+              <X className="size-4" />
             </button>
           </div>
         )}
@@ -137,7 +137,7 @@ export const DashboardPreview: React.FC = () => {
                 <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">
                   Discovered Crypto Assets
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-white">1,482</div>
+                <div className="text-2xl sm:text-3xl font-black text-white tabular-nums">1,482</div>
                 <div className="text-[11px] text-slate-400 mt-1 font-mono">Across 42 microservices</div>
               </div>
 
@@ -145,7 +145,7 @@ export const DashboardPreview: React.FC = () => {
                 <div className="text-xs font-mono text-rose-300 uppercase tracking-wider mb-1">
                   Quantum-Vulnerable
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-rose-400">418</div>
+                <div className="text-2xl sm:text-3xl font-black text-rose-400 tabular-nums">418</div>
                 <div className="text-[11px] text-rose-300/80 mt-1 font-mono">RSA &amp; ECC Asymmetric ciphers</div>
               </div>
 
@@ -153,7 +153,7 @@ export const DashboardPreview: React.FC = () => {
                 <div className="text-xs font-mono text-amber-300 uppercase tracking-wider mb-1">
                   High Priority HNDL
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-amber-400">19</div>
+                <div className="text-2xl sm:text-3xl font-black text-amber-400 tabular-nums">19</div>
                 <div className="text-[11px] text-amber-300/80 mt-1 font-mono">Public TLS &amp; Long-life Vaults</div>
               </div>
 
@@ -161,7 +161,7 @@ export const DashboardPreview: React.FC = () => {
                 <div className="text-xs font-mono text-emerald-300 uppercase tracking-wider mb-1">
                   Quantum-Resistant
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-emerald-400">1,064</div>
+                <div className="text-2xl sm:text-3xl font-black text-emerald-400 tabular-nums">1,064</div>
                 <div className="text-[11px] text-emerald-300/80 mt-1 font-mono">AES-256 &amp; SHA-2/3 primitives</div>
               </div>
             </div>
@@ -345,8 +345,18 @@ export const DashboardPreview: React.FC = () => {
               </table>
 
               {filteredItems.length === 0 && (
-                <div className="text-center py-12 text-slate-400">
-                  No cryptographic assets matched your search filters.
+                <div className="text-center py-12 px-4 text-slate-400 flex flex-col items-center justify-center gap-3">
+                  <p className="text-sm">No cryptographic assets matched your search filters.</p>
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setSelectedCategory('All');
+                      setSelectedRisk('All');
+                    }}
+                    className="px-4 py-2 rounded-xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold hover:bg-cyan-900/40 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                  >
+                    Reset All Filters
+                  </button>
                 </div>
               )}
             </div>

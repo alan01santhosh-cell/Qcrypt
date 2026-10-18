@@ -78,10 +78,10 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
             Tailored For High-Assurance Teams
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Built for Organizations with High Cryptographic Needs.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             Whether your priority is securing confidential data for decades, achieving compliance, or modernizing
             a cloud-scale microservice architecture, Qcrypt provides tailored visibility and workflows.
           </p>
@@ -98,11 +98,11 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
               >
                 <div className="cyber-card-inner p-6 sm:p-7 flex flex-col justify-between h-full">
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                      <Icon className="w-5 h-5 stroke-[1.5]" />
+                    <div className="size-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                      <Icon className="size-5 stroke-[1.5]" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors text-balance">
                       {aud.title}
                     </h3>
                     <div className="text-xs font-mono text-slate-400 mb-4 pb-2 border-b border-white/5">
@@ -114,7 +114,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
                         <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 mb-1">
                           Operational Use Case
                         </div>
-                        <p className="text-xs text-slate-300 leading-relaxed">
+                        <p className="text-xs text-slate-300 leading-relaxed text-pretty">
                           {aud.useCase}
                         </p>
                       </div>
@@ -123,7 +123,7 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
                         <div className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 mb-1">
                           Strategic Business ROI
                         </div>
-                        <p className="text-xs text-slate-400 leading-relaxed">
+                        <p className="text-xs text-slate-400 leading-relaxed text-pretty">
                           {aud.benefit}
                         </p>
                       </div>
@@ -133,10 +133,10 @@ export const TargetCustomers: React.FC<TargetCustomersProps> = ({ onSelectAudien
                   <div className="mt-6 pt-4 border-t border-white/5">
                     <button
                       onClick={() => onSelectAudience(aud.title)}
-                      className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 group/btn"
+                      className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 group/btn rounded focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                     >
                       <span>Request tailored walkthrough</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
                     </button>
                   </div>
                 </div>

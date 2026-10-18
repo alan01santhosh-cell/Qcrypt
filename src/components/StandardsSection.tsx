@@ -8,13 +8,13 @@ export const StandardsSection: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-            <Award className="w-3.5 h-3.5" />
+            <Award className="size-3.5" />
             Global Cryptographic Frameworks
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Plan Your Migration with Established Standards.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             The National Institute of Standards and Technology (NIST) has officially released finalized Federal
             Information Processing Standards (FIPS) for Post-Quantum Cryptography. Qcrypt aligns your code analysis,
             CBOM categorization, and remediation blueprints directly with these international benchmarks.
@@ -25,10 +25,10 @@ export const StandardsSection: React.FC = () => {
               href="https://csrc.nist.gov/projects/post-quantum-cryptography"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 text-xs font-semibold font-mono transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-400 hover:text-cyan-300 border border-white/10 text-xs font-semibold font-mono transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
             >
               <span>Visit Official NIST Post-Quantum Cryptography Portal</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="size-3.5" />
             </a>
           </div>
         </div>
@@ -40,7 +40,7 @@ export const StandardsSection: React.FC = () => {
               <div className="cyber-card-inner p-6 sm:p-7 flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
-                    <span className="font-mono text-sm font-bold text-cyan-400">
+                    <span className="font-mono text-sm font-bold text-cyan-400 tabular-nums">
                       {std.standard}
                     </span>
                     <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
@@ -48,10 +48,10 @@ export const StandardsSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="text-2xl font-black text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                  <div className="text-2xl font-black text-white mb-1 group-hover:text-cyan-300 transition-colors text-balance">
                     {std.algorithm}
                   </div>
-                  <div className="text-xs text-slate-400 mb-5 leading-snug">
+                  <div className="text-xs text-slate-400 mb-5 leading-snug text-pretty">
                     {std.fullName}
                   </div>
 
@@ -76,7 +76,7 @@ export const StandardsSection: React.FC = () => {
                       <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider block mb-1">
                         How Qcrypt Aligns:
                       </span>
-                      <p className="text-slate-300 text-xs leading-relaxed">
+                      <p className="text-slate-300 text-xs leading-relaxed text-pretty">
                         {std.qcryptAlignment}
                       </p>
                     </div>
@@ -84,9 +84,9 @@ export const StandardsSection: React.FC = () => {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                  <span>Standardized Aug 2024</span>
+                  <span className="tabular-nums">Standardized Aug 2024</span>
                   <span className="text-cyan-400 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckCircle2 className="size-3.5" />
                     Direct Mapping
                   </span>
                 </div>
@@ -97,8 +97,8 @@ export const StandardsSection: React.FC = () => {
 
         {/* Clear Standards & Endorsement Disclaimer */}
         <div className="p-5 rounded-2xl bg-[#030610] border border-white/10 flex items-start gap-3.5 text-xs text-slate-400 leading-relaxed">
-          <AlertCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-          <div>
+          <AlertCircle className="size-4 text-cyan-400 shrink-0 mt-0.5" />
+          <div className="text-pretty">
             <strong className="text-slate-300 font-medium">Regulatory &amp; Standards Note:</strong> Qcrypt’s
             remediation guides and cryptographic discovery algorithms are designed to reference and align with
             applicable NIST, ANSSI, and BSI post-quantum standards. Reference to NIST publications does not imply or

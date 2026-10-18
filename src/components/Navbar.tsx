@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenEarlyAccess })
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-[max(1rem,env(safe-area-inset-top))] pointer-events-none">
       <nav
         className={`pointer-events-auto max-w-6xl mx-auto rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           isScrolled
@@ -38,9 +38,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenEarlyAccess })
         } flex items-center justify-between`}
       >
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-full">
-          <div className="relative w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/30 border border-cyan-400/30 flex items-center justify-center p-1 shadow-[0_0_15px_rgba(0,240,255,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110">
-            <svg viewBox="0 0 32 32" className="w-5 h-5 text-white" fill="none">
+        <a href="#" aria-label="Qcrypt Home" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-full">
+          <div className="relative size-8 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/30 border border-cyan-400/30 flex items-center justify-center p-1 shadow-[0_0_15px_rgba(0,240,255,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110">
+            <svg viewBox="0 0 32 32" className="size-5 text-white" fill="none">
               <polygon points="16,3 28,9.5 28,22.5 16,29 4,22.5 4,9.5" stroke="currentColor" strokeWidth="1.75" />
               <circle cx="16" cy="16" r="3" fill="#00f0ff" />
               <line x1="16" y1="16" x2="28" y2="22.5" stroke="#00f0ff" strokeWidth="1.5" strokeDasharray="2 2" />

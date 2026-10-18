@@ -81,10 +81,10 @@ export const FeaturesSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
             Product Capabilities
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Engineered for Cryptographic Agility &amp; Enterprise Governance.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
             Every feature in Qcrypt is designed to solve a specific operational pain point, moving your organization
             from cryptographic uncertainty to a structured, repeatable migration practice.
           </p>
@@ -100,15 +100,15 @@ export const FeaturesSection: React.FC = () => {
                   <div>
                     {/* Card Header */}
                     <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-cyan-950/40 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                        <Icon className="w-5 h-5 stroke-[1.5]" />
+                      <div className="size-12 rounded-xl bg-cyan-950/40 border border-cyan-500/25 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                        <Icon className="size-5 stroke-[1.5]" />
                       </div>
                       <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
                         {feat.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors text-balance">
                       {feat.title}
                     </h3>
                     <div className="text-xs font-mono text-cyan-400 mb-4">
@@ -121,17 +121,17 @@ export const FeaturesSection: React.FC = () => {
                         <div className="text-[11px] font-mono uppercase text-slate-400 tracking-wider mb-1">
                           What It Does
                         </div>
-                        <p className="text-xs text-slate-300 leading-relaxed">
+                        <p className="text-xs text-slate-300 leading-relaxed text-pretty">
                           {feat.whatItDoes}
                         </p>
                       </div>
 
                       <div className="pt-3 border-t border-white/5">
                         <div className="text-[11px] font-mono uppercase text-cyan-300 tracking-wider mb-1 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                          <CheckCircle2 className="size-3.5 text-cyan-400" />
                           Why It Matters to You
                         </div>
-                        <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        <p className="text-xs text-slate-400 leading-relaxed font-medium text-pretty">
                           {feat.whyItMatters}
                         </p>
                       </div>

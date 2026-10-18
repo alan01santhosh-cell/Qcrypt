@@ -69,10 +69,10 @@ export const WhyQcrypt: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
             Structured Migration
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight text-balance">
             Make Post-Quantum Migration More Manageable.
           </h2>
-          <p className="text-lg text-slate-300 leading-relaxed font-normal">
+          <p className="text-lg text-slate-300 leading-relaxed font-normal text-pretty">
             Post-quantum cryptography migration will be one of the largest infrastructural transitions in computing
             history. Qcrypt makes this monumental challenge approachable and structured.
           </p>
@@ -82,7 +82,7 @@ export const WhyQcrypt: React.FC = () => {
             <div className="text-xs font-mono uppercase text-cyan-300 tracking-wider font-semibold mb-2">
               Our Core Differentiation
             </div>
-            <p className="text-base sm:text-lg text-white font-semibold leading-relaxed">
+            <p className="text-base sm:text-lg text-white font-semibold leading-relaxed text-pretty">
               &ldquo;Qcrypt connects cryptographic discovery, risk prioritization, and migration planning in one
               structured workflow.&rdquo;
             </p>
@@ -95,14 +95,14 @@ export const WhyQcrypt: React.FC = () => {
             const Icon = diff.icon;
             return (
               <div key={diff.title} className="cyber-card rounded-2xl p-6 sm:p-7 flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 shrink-0">
-                  <Icon className="w-6 h-6 stroke-[1.75]" />
+                <div className="size-12 rounded-xl bg-cyan-950/50 border border-cyan-500/25 flex items-center justify-center text-cyan-400 shrink-0">
+                  <Icon className="size-6 stroke-[1.5]" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 text-balance">
                     {diff.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-pretty">
                     {diff.description}
                   </p>
                 </div>

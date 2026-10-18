@@ -37,13 +37,13 @@ export const FaqSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-wider uppercase mb-4">
-            <HelpCircle className="w-3.5 h-3.5" />
+            <HelpCircle className="size-3.5" />
             Knowledge Base
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="text-base text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-300 leading-relaxed text-pretty">
             Essential facts about post-quantum cryptography risks, migration timelines, and how Qcrypt operates.
           </p>
         </div>
@@ -58,24 +58,31 @@ export const FaqSection: React.FC = () => {
                 className="rounded-2xl border border-white/10 bg-[#070c19] overflow-hidden transition-all duration-300"
               >
                 <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
+                  id={`faq-btn-${index}`}
+                  aria-controls={`faq-panel-${index}`}
                   aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
                 >
-                  <span className="text-sm sm:text-base font-bold text-white leading-snug">
+                  <span className="text-sm sm:text-base font-bold text-white leading-snug text-balance">
                     {faq.q}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-300 ${
+                    className={`size-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-300 ${
                       isOpen ? 'rotate-180 text-cyan-400 border-cyan-500/40 bg-cyan-950/40' : ''
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="size-4" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 font-normal">
+                  <div
+                    id={`faq-panel-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-btn-${index}`}
+                    className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 font-normal text-pretty"
+                  >
                     {faq.a}
                   </div>
                 )}
