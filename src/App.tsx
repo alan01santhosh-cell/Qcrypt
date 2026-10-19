@@ -1,8 +1,8 @@
-import { useState, lazy, Suspense } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+import { ThreeHeroScrollytelling } from './components/ThreeHeroScrollytelling';
 import { CryptoMarquee } from './components/CryptoMarquee';
-import { QuantumLatticeCanvas } from './components/QuantumLatticeCanvas';
 
 // Lazy-load below-the-fold components to accelerate initial First Contentful Paint (FCP) and LCP
 const ProblemSection = lazy(() =>
@@ -39,20 +39,53 @@ const Footer = lazy(() =>
 export function App() {
   const [contactMode, setContactMode] = useState<'demo' | 'early-access' | 'contact'>('demo');
   const [selectedRole, setSelectedRole] = useState<string>('');
+  const lenisRef = useRef<Lenis | null>(null);
+
+  // Initialize Lenis Smooth Scrolling
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const lenis = new Lenis({
+      duration: 1.25,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.05
+    });
+
+    lenisRef.current = lenis;
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
 
   const scrollToContact = (mode: 'demo' | 'early-access' | 'contact', role?: string) => {
     setContactMode(mode);
     if (role) setSelectedRole(role);
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo('#contact', { duration: 1.4, offset: -50 });
+    } else {
+      const element = document.getElementById('contact');
+      element?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(`#${id}`, { duration: 1.4, offset: -50 });
+    } else {
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -66,34 +99,22 @@ export function App() {
         Skip to main content
       </a>
 
-      {/* High-End Tactile Film-Grain Overlay */}
-      <div className="film-grain" aria-hidden="true" />
-
-      {/* Global Interactive Quantum Lattice Canvas for the Whole Site */}
-      <QuantumLatticeCanvas />
-
-      {/* Floating Island Navigation */}
-      <Navbar
-        onOpenDemo={() => scrollToContact('demo')}
-        onOpenEarlyAccess={() => scrollToContact('early-access')}
+      {/* 1. Centerpiece Interactive 3D Scrollytelling Experience */}
+      <ThreeHeroScrollytelling
+        onOpenDemo={() => scrollToSection('dashboard-preview')}
+        onOpenContact={() => scrollToContact('demo')}
+        onExploreArchitecture={() => scrollToSection('problem')}
       />
 
-      <main id="main-content" className="flex-1">
-        {/* 1. Hero Section (Immediate Critical Render) */}
-        <Hero
-          onRequestDemo={() => scrollToContact('demo')}
-          onGetEarlyAccess={() => scrollToContact('early-access')}
-          onExplorePlatform={() => scrollToSection('dashboard-preview')}
-        />
+      {/* Cryptographic Protocol Transition Infinite Marquee */}
+      <CryptoMarquee />
 
-        {/* Cryptographic Protocol Transition Infinite Marquee */}
-        <CryptoMarquee />
-
+      <main id="main-content" className="flex-1 relative z-10">
         {/* Below-the-fold components streamed in asynchronously */}
         <Suspense
           fallback={
             <div className="py-20 flex items-center justify-center text-cyan-400/60 font-mono text-xs">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping mr-2" />
+              <span className="size-2 rounded-full bg-cyan-400 animate-ping mr-2" />
               Initializing cryptographic modules…
             </div>
           }
@@ -107,19 +128,19 @@ export function App() {
           {/* 4. Product Features & Customer Benefits */}
           <FeaturesSection />
 
-          {/* 5. Product Dashboard Preview */}
+          {/* 5. Product Dashboard Preview & CBOM Sandbox */}
           <DashboardPreview />
 
-          {/* 6. Why Choose Qcrypt */}
+          {/* 6. Why Choose Qcrypt & Agility Scorecard */}
           <WhyQcrypt onExploreRemediation={() => scrollToContact('early-access')} />
 
-          {/* 7. Target Customers */}
+          {/* 7. Target Customers & Personas */}
           <TargetCustomers onSelectAudience={(audience) => scrollToContact('demo', audience)} />
 
-          {/* 8. Standards and Credibility */}
+          {/* 8. Standards and NIST Credibility */}
           <StandardsSection />
 
-          {/* 9. FAQ Section */}
+          {/* 9. FAQ Knowledge Base */}
           <FaqSection />
 
           {/* 10. Conversion Section & Contact Form */}
