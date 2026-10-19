@@ -119,14 +119,6 @@ export const MOCK_CBOM_ITEMS: CbomItem[] = [
   }
 ];
 
-export const MOCK_TELEMETRY_FEED = [
-  { time: '18:14:02', service: 'auth-gateway', target: 'jwt_provider.go', finding: 'RSA-2048 keypair identified', status: 'Vulnerable' },
-  { time: '18:14:05', service: 'cluster-mesh', target: 'envoy-proxy:443', finding: 'ECDH secp256r1 active', status: 'HNDL Risk' },
-  { time: '18:14:09', service: 'payment-core', target: 'vault/kms_client.py', finding: 'AES-256-GCM symmetric', status: 'PQC Safe' },
-  { time: '18:14:13', service: 'ci-pipeline', target: 'sign_artifact.sh', finding: 'ECDSA SHA-256 cert', status: 'Vulnerable' },
-  { time: '18:14:18', service: 'data-ledger', target: 'ledger/audit_chain.rs', finding: 'SHA-384 Merkle hash', status: 'PQC Safe' },
-];
-
 export const NIST_STANDARDS_DATA = [
   {
     standard: 'NIST FIPS 203',

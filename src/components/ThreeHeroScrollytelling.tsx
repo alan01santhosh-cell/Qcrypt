@@ -68,6 +68,68 @@ const HOTSPOTS: Hotspot[] = [
   }
 ];
 
+export interface Chapter {
+  stage: number;
+  title: string;
+  subtitle: string;
+  lead: string;
+  body: string;
+  badge: string;
+  badgeColor: string;
+  cameraTarget: [number, number, number];
+  explosion: number;
+}
+
+const CHAPTERS: Chapter[] = [
+  {
+    stage: 0,
+    title: 'THE QUANTUM HORIZON',
+    subtitle: 'Harvest Now, Decrypt Later (HNDL)',
+    lead: 'Hostile nation-states and corporate espionage groups are systematically intercepting and archiving encrypted enterprise network traffic today.',
+    body: 'When a cryptographically relevant quantum computer (CRQC) achieves commercial scale, Shor’s algorithm will retrospectively crack all public-key RSA and ECC cryptography.',
+    badge: 'Immediate Operational Threat',
+    badgeColor: 'text-rose-400 bg-rose-950/60 border-rose-500/30',
+    cameraTarget: [0, 0, 7.5],
+    explosion: 0.0
+  },
+  {
+    stage: 1,
+    title: '70% TRANSITIVE BLINDSPOT',
+    subtitle: 'Disassembled Architecture Vulnerability',
+    lead: 'Cryptographic calls rarely exist as neat, documented top-level functions in your repositories.',
+    body: 'Over 70% of cryptographic debt sits buried inside transitive lockfiles, compiled C-extensions, legacy JWT signers, and forgotten microservice configurations that standard SCA and SAST tools miss.',
+    badge: 'Exploded Component View',
+    badgeColor: 'text-amber-400 bg-amber-950/60 border-amber-500/30',
+    cameraTarget: [-1.8, 0.8, 6.5],
+    explosion: 0.85
+  },
+  {
+    stage: 2,
+    title: 'NIST MODULE-LATTICE DEFENSE',
+    subtitle: 'Crystalline PQC Armor',
+    lead: 'Finalized by NIST in August 2024: FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA) form the foundation of post-quantum resilience.',
+    body: 'High-dimensional lattice geometry provides mathematical security for which neither classical nor quantum algorithms offer polynomial speedups, neutralizing Shor’s factorization threats completely.',
+    badge: 'FIPS 203 / 204 Standardized',
+    badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/30',
+    cameraTarget: [1.8, -0.6, 6.2],
+    explosion: 0.35
+  },
+  {
+    stage: 3,
+    title: 'CONTINUOUS CBOM SENSORS',
+    subtitle: 'Automated CycloneDX 1.6 Discovery',
+    lead: 'Qcrypt parses source code Abstract Syntax Trees (AST) across Go, Rust, TypeScript, Java, and Python without sending your IP to third-party clouds.',
+    body: 'Every algorithm, curve, key length, and protocol is indexed into a machine-readable Cryptographic Bill of Materials (CBOM), prioritized by real-world quantum exposure.',
+    badge: 'Autonomous AST Engine',
+    badgeColor: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/30',
+    cameraTarget: [0, 1.4, 6.0],
+    explosion: 0.5
+  }
+];
+
+const tempVec = new THREE.Vector3();
+const defaultEuler = new THREE.Euler();
+
 interface ThreeHeroScrollytellingProps {
   onOpenDemo: () => void;
   onOpenContact: () => void;
@@ -131,22 +193,22 @@ export function ThreeHeroScrollytelling({
     const coords: { [key: string]: { x: number; y: number; visible: boolean } } = {};
 
     HOTSPOTS.forEach((spot) => {
-      const pos = new THREE.Vector3(...spot.position);
+      tempVec.set(spot.position[0], spot.position[1], spot.position[2]);
       // If exploded, offset positions accordingly
       if (animStateRef.current.currentExplosion > 0.05) {
         const offset = animStateRef.current.currentExplosion * 1.2;
-        pos.x += Math.sign(pos.x) * offset * 0.4;
-        pos.y += Math.sign(pos.y) * offset * 0.6;
-        pos.z += Math.sign(pos.z) * offset * 0.4;
+        tempVec.x += Math.sign(tempVec.x) * offset * 0.4;
+        tempVec.y += Math.sign(tempVec.y) * offset * 0.6;
+        tempVec.z += Math.sign(tempVec.z) * offset * 0.4;
       }
 
-      pos.applyEuler(modelGroupRef.current ? modelGroupRef.current.rotation : new THREE.Euler());
-      pos.project(camera);
+      tempVec.applyEuler(modelGroupRef.current ? modelGroupRef.current.rotation : defaultEuler);
+      tempVec.project(camera);
 
       // Check if in front of camera
-      const isVisible = pos.z < 1.0;
-      const x = pos.x * widthHalf + widthHalf;
-      const y = -(pos.y * heightHalf) + heightHalf;
+      const isVisible = tempVec.z < 1.0;
+      const x = tempVec.x * widthHalf + widthHalf;
+      const y = -(tempVec.y * heightHalf) + heightHalf;
 
       coords[spot.id] = { x, y, visible: isVisible };
     });
@@ -615,52 +677,6 @@ export function ThreeHeroScrollytelling({
   };
 
   // Scrollytelling Stage Navigation
-  const CHAPTERS = [
-    {
-      stage: 0,
-      title: 'THE QUANTUM HORIZON',
-      subtitle: 'Harvest Now, Decrypt Later (HNDL)',
-      lead: 'Hostile nation-states and corporate espionage groups are systematically intercepting and archiving encrypted enterprise network traffic today.',
-      body: 'When a cryptographically relevant quantum computer (CRQC) achieves commercial scale, Shor’s algorithm will retrospectively crack all public-key RSA and ECC cryptography.',
-      badge: 'Immediate Operational Threat',
-      badgeColor: 'text-rose-400 bg-rose-950/60 border-rose-500/30',
-      cameraTarget: [0, 0, 7.5],
-      explosion: 0.0
-    },
-    {
-      stage: 1,
-      title: '70% TRANSITIVE BLINDSPOT',
-      subtitle: 'Disassembled Architecture Vulnerability',
-      lead: 'Cryptographic calls rarely exist as neat, documented top-level functions in your repositories.',
-      body: 'Over 70% of cryptographic debt sits buried inside transitive lockfiles, compiled C-extensions, legacy JWT signers, and forgotten microservice configurations that standard SCA and SAST tools miss.',
-      badge: 'Exploded Component View',
-      badgeColor: 'text-amber-400 bg-amber-950/60 border-amber-500/30',
-      cameraTarget: [-1.8, 0.8, 6.5],
-      explosion: 0.85
-    },
-    {
-      stage: 2,
-      title: 'NIST MODULE-LATTICE DEFENSE',
-      subtitle: 'Crystalline PQC Armor',
-      lead: 'Finalized by NIST in August 2024: FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA) form the foundation of post-quantum resilience.',
-      body: 'High-dimensional lattice geometry provides mathematical security for which neither classical nor quantum algorithms offer polynomial speedups, neutralizing Shor’s factorization threats completely.',
-      badge: 'FIPS 203 / 204 Standardized',
-      badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/30',
-      cameraTarget: [1.8, -0.6, 6.2],
-      explosion: 0.35
-    },
-    {
-      stage: 3,
-      title: 'CONTINUOUS CBOM SENSORS',
-      subtitle: 'Automated CycloneDX 1.6 Discovery',
-      lead: 'Qcrypt parses source code Abstract Syntax Trees (AST) across Go, Rust, TypeScript, Java, and Python without sending your IP to third-party clouds.',
-      body: 'Every algorithm, curve, key length, and protocol is indexed into a machine-readable Cryptographic Bill of Materials (CBOM), prioritized by real-world quantum exposure.',
-      badge: 'Autonomous AST Engine',
-      badgeColor: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/30',
-      cameraTarget: [0, 1.4, 6.0],
-      explosion: 0.5
-    }
-  ];
 
   const handleSelectChapter = (idx: number) => {
     setCurrentChapter(idx);
